@@ -1,9 +1,6 @@
 # Secrets (never commit)
 .env
 
-# Outputs
-outputs/
-
 # Python
 __pycache__/
 *.py[cod]

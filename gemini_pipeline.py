@@ -3,17 +3,22 @@ gemini_pipeline.py
 
 End-to-end pipeline:
 User ticker -> Yahoo Finance (fundamental + price) -> feature engineering ->
-Gemini (Prompt 1A/1B/1C) -> Prompt 2 synthesis -> final JSON report.
+LLM (Prompt 1A/1B/1C) -> Prompt 2 synthesis -> final JSON report.
 
 This version assumes you renamed your data file to:
 - data_pipeline.py
 and both files are in the same folder.
 
 Requirements:
-  pip install -U google-genai yfinance pandas numpy python-dotenv
+  pip install -U google-genai openai yfinance pandas numpy python-dotenv
 
-Secrets (not committed): copy .env.example to .env, set GEMINI_API_KEY=your_key.
-  Or set env var: export GEMINI_API_KEY="..."
+Secrets (not committed): copy .env.example to .env and set:
+  - GEMINI_API_KEY=your_gemini_key   (for Gemini backend)
+  - OPENAI_API_KEY=your_openai_key   (for OpenAI backend, optional)
+
+Backend selection (env var, optional):
+  - LLM_BACKEND=gemini   # default, uses google-genai
+  - LLM_BACKEND=openai   # temporary OpenAI backend
 """
 
 from __future__ import annotations
@@ -34,6 +39,7 @@ import yfinance as yf
 
 from google import genai
 from google.genai import types
+from openai import OpenAI
 
 # -------------------------
 # Load .env from project dir (secrets stay local, not in repo)
@@ -43,7 +49,8 @@ try:
     from dotenv import load_dotenv  # type: ignore[import-untyped]
     load_dotenv(THIS_DIR / ".env")
 except ImportError:
-    pass  # GEMINI_API_KEY from system env if no python-dotenv
+    # Fall back to whatever is in the process environment.
+    pass
 
 # -------------------------
 # Local import: data_pipeline.py
@@ -364,7 +371,7 @@ Return a JSON object with this exact schema:
 
 
 # =========================
-# 5) Gemini wrapper (JSON Mode + defensive parsing)
+# 5) LLM wrapper (JSON Mode + defensive parsing)
 # =========================
 def extract_json(text: str) -> Any:
     text = (text or "").strip()
@@ -395,6 +402,33 @@ class GeminiRunner:
             config=cfg,
         )
         return extract_json(resp.text)
+
+
+@dataclass
+class OpenAIRunner:
+    model: str
+    client: Any
+
+    def run_json(self, prompt: str, temperature: float = 0.2) -> Any:
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ]
+        resp = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=temperature,
+        )
+        content = resp.choices[0].message.content
+        if isinstance(content, list):
+            text = "".join(
+                part.get("text", "")
+                for part in content
+                if isinstance(part, dict)
+            )
+        else:
+            text = str(content or "")
+        return extract_json(text)
 
 
 # =========================
@@ -475,10 +509,19 @@ def main():
         TECHNICAL_SNAPSHOT_JSON=tech_snap_json,
     )
 
-    # ---------- Gemini client ----------
-    model = os.getenv("GEMINI_MODEL", "gemini-3-flash-preview")
-    client = genai.Client()
-    runner = GeminiRunner(model=model, client=client)
+    # ---------- LLM client selection ----------
+    backend = os.getenv("LLM_BACKEND", "gemini").lower()
+    if backend == "openai":
+        # CBS AI gateway for OpenAI
+        base_url = os.getenv("OPENAI_BASE_URL", "https://cbsai.business.columbia.edu/api/v1")
+        model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+        client = OpenAI(base_url=base_url)
+        runner = OpenAIRunner(model=model, client=client)
+    else:
+        # Default: Gemini (original behavior)
+        model = os.getenv("GEMINI_MODEL", "gemini-3-flash-preview")
+        client = genai.Client()
+        runner = GeminiRunner(model=model, client=client)
 
     # ---------- 1A/1B/1C parallel ----------
     results: Dict[str, Any] = {}
@@ -513,11 +556,6 @@ def main():
     print("\n=== FINAL REPORT (JSON) ===")
     print(json.dumps(final_report, ensure_ascii=False, indent=2))
     print(f"\nSaved to: {out_path}")
-
-    try:
-        client.close()
-    except Exception:
-        pass
 
 
 if __name__ == "__main__":

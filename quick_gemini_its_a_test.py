@@ -1,4 +1,4 @@
-"""Quick sanity check: Gemini API connectivity. Uses .env for GEMINI_API_KEY (no keys in repo)."""
+"""Quick sanity check: LLM connectivity via .env (no keys in repo)."""
 from pathlib import Path
 import os
 
@@ -9,11 +9,24 @@ try:
 except ImportError:
     pass
 
-from google import genai
+backend = os.getenv("LLM_BACKEND", "gemini").lower()
 
-client = genai.Client()  # reads GEMINI_API_KEY from env or .env
-resp = client.models.generate_content(
-    model="gemini-3-flash-preview",
-    contents="Say hello in Chinese in one sentence."
-)
-print(resp.text)
+if backend == "openai":
+    from openai import OpenAI
+
+    base_url = os.getenv("OPENAI_BASE_URL", "https://cbsai.business.columbia.edu/api/v1")
+    client = OpenAI(base_url=base_url)
+    resp = client.chat.completions.create(
+        model=os.getenv("OPENAI_MODEL", "gpt-4o-mini"),
+        messages=[{"role": "user", "content": "Say hello in Chinese in one sentence."}],
+    )
+    print(resp.choices[0].message.content)
+else:
+    from google import genai
+
+    client = genai.Client()  # reads GEMINI_API_KEY from env or .env
+    resp = client.models.generate_content(
+        model=os.getenv("GEMINI_MODEL", "gemini-3-flash-preview"),
+        contents="Say hello in Chinese in one sentence.",
+    )
+    print(resp.text)

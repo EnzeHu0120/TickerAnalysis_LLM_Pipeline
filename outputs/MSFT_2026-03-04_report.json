@@ -1,0 +1,67 @@
+{
+  "report_metadata": {
+    "company": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "analysis_date": "2026-03-04",
+    "analysis_type": "Fundamental + Technical Synthesis"
+  },
+  "core_divergence": {
+    "fundamental_stance": "Strongly Positive",
+    "technical_stance": "Negative",
+    "divergence_summary": "Fundamentals indicate strong growth and financial health, while technicals show bearish momentum and caution due to price trends."
+  },
+  "synthesized_signals": [
+    {
+      "rank": 1,
+      "signal": "Strong Revenue Growth",
+      "sentiment": "Strongly Positive",
+      "fundamental_driver": "Total revenue increased significantly.",
+      "technical_driver": "N/A",
+      "synthesis": "Strong revenue growth supports long-term bullish outlook despite current technical bearishness."
+    },
+    {
+      "rank": 2,
+      "signal": "Improving Operating Margin",
+      "sentiment": "Positive",
+      "fundamental_driver": "Improved operational efficiency.",
+      "technical_driver": "N/A",
+      "synthesis": "Positive margin trends provide a solid foundation for future profitability."
+    },
+    {
+      "rank": 3,
+      "signal": "MACD Bearish Crossover",
+      "sentiment": "Negative",
+      "fundamental_driver": "N/A",
+      "technical_driver": "Bearish momentum indicated.",
+      "synthesis": "Technical bearish signals suggest caution despite strong fundamentals."
+    },
+    {
+      "rank": 4,
+      "signal": "Support Level Tested",
+      "sentiment": "Cautionary",
+      "fundamental_driver": "N/A",
+      "technical_driver": "Approaching key support level.",
+      "synthesis": "Potential for reversal or breakdown at support level; monitor closely."
+    }
+  ],
+  "price_target_matrix": [
+    {
+      "scenario": "Bear | Consensus | Bull",
+      "timeline": "12 months",
+      "price_target_range": {
+        "low": 350,
+        "high": 500
+      },
+      "key_assumption": "Continued revenue growth and market demand, balanced against technical resistance."
+    }
+  ],
+  "overall_outlook": "Cautiously optimistic; strong fundamentals support long-term growth, but technical indicators suggest short-term caution.",
+  "key_risks": [
+    "Rising total liabilities impacting financial stability.",
+    "Bearish technical momentum leading to further price declines."
+  ],
+  "key_catalysts": [
+    "Continued strong revenue and net income growth.",
+    "Potential recovery in technical indicators."
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "report_metadata": {
+    "company": "Apple Inc.",
+    "ticker": "AAPL",
+    "analysis_date": "2026-02-28",
+    "analysis_type": "Fundamental + Technical Synthesis"
+  },
+  "core_divergence": {
+    "fundamental_stance": "Strongly Positive",
+    "technical_stance": "Cautionary",
+    "divergence_summary": "A clear divergence exists between Apple's record-breaking fundamental performance (18.7% operating income growth) and its recent technical consolidation (4.5% decline over 3 months). While fundamentals suggest an accelerating growth trajectory and aggressive deleveraging, the technicals reflect short-term hesitation as the price struggles to reclaim the 50-day moving average."
+  },
+  "synthesized_signals": [
+    {
+      "rank": 1,
+      "signal": "Earnings Acceleration vs. Price Consolidation",
+      "sentiment": "Strongly Positive",
+      "fundamental_driver": "Record 2025 revenue of 416 billion and Q1 2026 operating income growth of 18.7%.",
+      "technical_driver": "Price is currently 4.5% off recent highs, trading near the 50-day MA of 265.20.",
+      "synthesis": "The fundamental strength provides a high-conviction 'buy the dip' opportunity as the technical consolidation appears to be a temporary pause in a long-term bull trend."
+    },
+    {
+      "rank": 2,
+      "signal": "Deleveraging Strength vs. Support Stability",
+      "sentiment": "Positive",
+      "fundamental_driver": "Net debt plummeted by 17.5 billion in the most recent quarter to 45.19 billion.",
+      "technical_driver": "Strong long-term support at the 200-day MA (242.50) and horizontal support at 246.47.",
+      "synthesis": "The massive reduction in financial risk via debt repayment reinforces the technical floor, making a breakdown below the 200-day MA highly unlikely."
+    },
+    {
+      "rank": 3,
+      "signal": "Margin Expansion vs. Momentum Shift",
+      "sentiment": "Positive",
+      "fundamental_driver": "Operating margins expanded to 32% in 2025 with high operational efficiency.",
+      "technical_driver": "Bullish MACD crossover (0.2053) and elevated trading volume of 72.2 million.",
+      "synthesis": "Improving profitability is beginning to manifest in technical momentum indicators, suggesting that institutional buyers are accumulating at current levels."
+    }
+  ],
+  "price_target_matrix": [
+    {
+      "scenario": "Bear",
+      "timeline": "6-12 Months",
+      "price_target_range": {
+        "low": 235.0,
+        "high": 246.0
+      },
+      "key_assumption": "Macroeconomic slowdown impacts consumer spending; price fails to hold the 200-day moving average."
+    },
+    {
+      "scenario": "Consensus",
+      "timeline": "6-12 Months",
+      "price_target_range": {
+        "low": 285.0,
+        "high": 300.0
+      },
+      "key_assumption": "Successful reclaim of the 50-day MA and continuation of the 15% revenue growth trend."
+    },
+    {
+      "scenario": "Bull",
+      "timeline": "6-12 Months",
+      "price_target_range": {
+        "low": 315.0,
+        "high": 335.0
+      },
+      "key_assumption": "Services margin expansion exceeds expectations and aggressive share buybacks continue to drive EPS outperformance."
+    }
+  ],
+  "overall_outlook": "The investment outlook for AAPL is Strongly Positive. The company is entering 2026 with its strongest balance sheet in years, characterized by rapidly declining net debt and record-high operating margins. While the technical chart shows a short-term struggle at the 265.20 resistance level, the underlying fundamental momentum and bullish MACD crossover suggest an imminent breakout. The combination of EPS-boosting buybacks and double-digit revenue growth provides a robust valuation floor.",
+  "key_risks": [
+    "Persistent negative working capital requiring high cash velocity",
+    "Rising effective tax rates (17.5% in Q1 2026) creating net income headwinds",
+    "Short-term technical failure to reclaim the 50-day moving average"
+  ],
+  "key_catalysts": [
+    "Potential for a massive new share repurchase authorization in mid-2026",
+    "Continued acceleration in Services revenue and margin expansion",
+    "Technical breakout above the 285.92 major resistance level"
+  ]
+}
