@@ -1,0 +1,77 @@
+{
+  "report_metadata": {
+    "company": "Oracle Corporation",
+    "ticker": "ORCL",
+    "analysis_date": "2026-03-09",
+    "analysis_type": "Fundamental + Technical Synthesis"
+  },
+  "rating": "Overweight",
+  "rating_rationale": "Strong revenue growth and improved profitability margins indicate a solid financial position, supported by positive technical indicators suggesting upward momentum.",
+  "core_divergence": {
+    "fundamental_stance": "Strongly Positive to Positive with caution due to high debt levels.",
+    "technical_stance": "Positive with cautionary signals regarding volatility.",
+    "divergence_summary": "While fundamentals show strong growth, the technical analysis indicates potential volatility and neutral momentum, suggesting a need for careful monitoring."
+  },
+  "synthesized_signals": [
+    {
+      "rank": 1,
+      "signal": "Strong Revenue Growth",
+      "sentiment": "Strongly Positive",
+      "fundamental_driver": "Total revenue increased significantly.",
+      "technical_driver": "MACD histogram rising indicates bullish momentum.",
+      "synthesis": "Strong revenue growth aligns with positive technical momentum."
+    },
+    {
+      "rank": 2,
+      "signal": "Improved Profitability Margins",
+      "sentiment": "Positive",
+      "fundamental_driver": "Net margin improved significantly.",
+      "technical_driver": "Stochastic indicator suggests upward momentum.",
+      "synthesis": "Improved margins support positive technical outlook."
+    },
+    {
+      "rank": 3,
+      "signal": "High Debt-to-Equity Ratio",
+      "sentiment": "Cautionary",
+      "fundamental_driver": "Increased leverage poses risks.",
+      "technical_driver": "Bollinger Bands indicate low volatility.",
+      "synthesis": "High leverage may offset positive signals from technical analysis."
+    },
+    {
+      "rank": 4,
+      "signal": "Stable Operating Income",
+      "sentiment": "Neutral",
+      "fundamental_driver": "Consistent operational performance.",
+      "technical_driver": "RSI below 50 indicates neutral momentum.",
+      "synthesis": "Stable income supports a cautious technical outlook."
+    },
+    {
+      "rank": 5,
+      "signal": "Volume Increase",
+      "sentiment": "Positive",
+      "fundamental_driver": "Increasing capitalization supports growth.",
+      "technical_driver": "Volume is significantly above average.",
+      "synthesis": "Increased volume reinforces positive growth expectations."
+    }
+  ],
+  "price_target_matrix": [
+    {
+      "scenario": "Bear | Consensus | Bull",
+      "timeline": "12 months",
+      "price_target_range": {
+        "low": 130,
+        "high": 180
+      },
+      "key_assumption": "Continued revenue growth and management of debt levels."
+    }
+  ],
+  "overall_outlook": "Oracle Corporation is positioned for growth with strong fundamentals, but investors should remain cautious of high debt levels and potential volatility in the market.",
+  "key_risks": [
+    "High debt-to-equity ratio may impact financial stability.",
+    "Potential market volatility affecting stock performance."
+  ],
+  "key_catalysts": [
+    "Continued revenue growth and expansion into new markets.",
+    "Improvement in operational efficiencies and cost management."
+  ]
+}

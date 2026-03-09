@@ -1,0 +1,98 @@
+{
+  "report_metadata": {
+    "company": "Celestica, Inc.",
+    "ticker": "CLS",
+    "analysis_date": "2026-03-09",
+    "analysis_type": "Fundamental + Technical Synthesis"
+  },
+  "rating": "持有",
+  "rating_english": "Hold",
+  "rating_rationale": "Strong fundamentals indicate growth potential, but technical indicators suggest caution due to bearish momentum.",
+  "core_divergence": {
+    "fundamental_stance": "Strongly Positive",
+    "technical_stance": "Negative",
+    "divergence_summary": "Fundamentals show robust growth and stability, while technicals indicate bearish trends and oversold conditions."
+  },
+  "synthesized_signals": [
+    {
+      "rank": 1,
+      "signal": "Strong Revenue Growth",
+      "sentiment": "Strongly Positive",
+      "fundamental_driver": "Total revenue growth from 7.25 billion to 12.39 billion.",
+      "technical_driver": "N/A",
+      "synthesis": "Strong revenue growth supports long-term investment despite current technical weakness."
+    },
+    {
+      "rank": 2,
+      "signal": "Improved Profitability",
+      "sentiment": "Strongly Positive",
+      "fundamental_driver": "Net income growth from 180.1 million to 832.5 million.",
+      "technical_driver": "N/A",
+      "synthesis": "Improved profitability enhances investment appeal despite bearish technical signals."
+    },
+    {
+      "rank": 3,
+      "signal": "RSI Oversold",
+      "sentiment": "Strongly Negative",
+      "fundamental_driver": "N/A",
+      "technical_driver": "RSI at 35.9 indicates oversold conditions.",
+      "synthesis": "Oversold conditions may present a buying opportunity, but caution is advised."
+    },
+    {
+      "rank": 4,
+      "signal": "MACD Bearish",
+      "sentiment": "Negative",
+      "fundamental_driver": "N/A",
+      "technical_driver": "MACD histogram falling.",
+      "synthesis": "Bearish MACD suggests continued downward pressure on price."
+    },
+    {
+      "rank": 5,
+      "signal": "Volume Decline",
+      "sentiment": "Cautionary",
+      "fundamental_driver": "N/A",
+      "technical_driver": "Volume below average.",
+      "synthesis": "Weak buying interest may hinder price recovery."
+    }
+  ],
+  "price_target_matrix": [
+    {
+      "scenario": "Bear",
+      "timeline": "12 months",
+      "price_target_range": {
+        "low": 200,
+        "high": 220
+      },
+      "key_assumption": "Continued bearish technical trends and market volatility."
+    },
+    {
+      "scenario": "Consensus",
+      "timeline": "12 months",
+      "price_target_range": {
+        "low": 240,
+        "high": 260
+      },
+      "key_assumption": "Stable fundamentals with moderate market conditions."
+    },
+    {
+      "scenario": "Bull",
+      "timeline": "12 months",
+      "price_target_range": {
+        "low": 280,
+        "high": 300
+      },
+      "key_assumption": "Strong market recovery and positive earnings surprises."
+    }
+  ],
+  "overall_outlook": "Celestica, Inc. shows strong fundamentals but faces technical challenges; a cautious approach is recommended.",
+  "key_risks": [
+    "Market volatility affecting stock performance",
+    "Potential operational challenges impacting profitability",
+    "Changes in industry demand"
+  ],
+  "key_catalysts": [
+    "Continued revenue growth from new contracts",
+    "Improved market conditions leading to technical recovery",
+    "Successful debt management enhancing financial stability"
+  ]
+}

@@ -1,24 +1,15 @@
 """
-gemini_pipeline.py
+llm_pipeline.py — LLM prompt runner (standalone module).
 
-End-to-end pipeline:
-User ticker -> Yahoo Finance (fundamental + price) -> feature engineering ->
-LLM (Prompt 1A/1B/1C) -> Prompt 2 synthesis -> final JSON report.
+Pulls fundamental data (fundamental_pipeline) and technical data (technical_pipeline),
+builds user prompts, runs Gemini/OpenAI for 1A/1B/1C + synthesis (Prompt 2), outputs JSON report.
 
-This version assumes you renamed your data file to:
-- data_pipeline.py
-and both files are in the same folder.
+Data sources:
+- Fundamental: fundamental_pipeline.py
+- Technical: technical_pipeline.py
+- This module: LLM client and prompt orchestration only.
 
-Requirements:
-  pip install -U google-genai openai yfinance pandas numpy python-dotenv
-
-Secrets (not committed): copy .env.example to .env and set:
-  - GEMINI_API_KEY=your_gemini_key   (for Gemini backend)
-  - OPENAI_API_KEY=your_openai_key   (for OpenAI backend, optional)
-
-Backend selection (env var, optional):
-  - LLM_BACKEND=gemini   # default, uses google-genai
-  - LLM_BACKEND=openai   # temporary OpenAI backend
+Run: python llm_pipeline.py AAPL
 """
 
 from __future__ import annotations
@@ -49,16 +40,16 @@ try:
     from dotenv import load_dotenv  # type: ignore[import-untyped]
     load_dotenv(THIS_DIR / ".env")
 except ImportError:
-    # Fall back to whatever is in the process environment.
     pass
 
 # -------------------------
-# Local import: data_pipeline.py
+# Data sources: fundamental + technical
 # -------------------------
 if str(THIS_DIR) not in sys.path:
     sys.path.insert(0, str(THIS_DIR))
 
-import data_pipeline as data_mod  # <-- renamed
+import fundamental_pipeline as fund_mod
+import technical_pipeline as tech_mod
 
 
 # =========================
@@ -99,30 +90,11 @@ def safe_json_dumps(obj: Any) -> str:
 
 
 # =========================
-# 2) Price data -> computed technical snapshot (grounded)
+# 2) Technical snapshot: fetch price -> technical_pipeline
 # =========================
-def compute_rsi(close: pd.Series, window: int = 14) -> pd.Series:
-    delta = close.diff()
-    gain = delta.clip(lower=0)
-    loss = (-delta).clip(lower=0)
-    avg_gain = gain.rolling(window).mean()
-    avg_loss = loss.rolling(window).mean().replace(0, np.nan)
-    rs = avg_gain / avg_loss
-    return 100 - (100 / (1 + rs))
-
-
-def compute_macd(close: pd.Series, fast: int = 12, slow: int = 26, signal: int = 9):
-    ema_fast = close.ewm(span=fast, adjust=False).mean()
-    ema_slow = close.ewm(span=slow, adjust=False).mean()
-    macd = ema_fast - ema_slow
-    macd_signal = macd.ewm(span=signal, adjust=False).mean()
-    macd_hist = macd - macd_signal
-    return macd, macd_signal, macd_hist
-
-
 def fetch_technical_snapshot(ticker: str, analysis_date: str, lookback_days: int = 365) -> Dict[str, Any]:
+    """Fetch price history and build technical snapshot via technical_pipeline (ta + summary for LLM)."""
     tk = yf.Ticker(ticker)
-
     end = pd.to_datetime(analysis_date) + pd.Timedelta(days=1)
     start = end - pd.Timedelta(days=lookback_days + 30)
     hist = tk.history(start=start, end=end, interval="1d")
@@ -130,63 +102,23 @@ def fetch_technical_snapshot(ticker: str, analysis_date: str, lookback_days: int
     if hist is None or hist.empty:
         return {"ticker": ticker, "analysis_date": analysis_date, "note": "No price history returned."}
 
-    close = hist["Close"].dropna()
-    vol = hist["Volume"].dropna() if "Volume" in hist.columns else pd.Series(dtype=float)
-
-    ma_50 = close.rolling(50).mean()
-    ma_200 = close.rolling(200).mean()
-    rsi_14 = compute_rsi(close, 14)
-    macd, macd_sig, macd_hist = compute_macd(close)
-
-    last = float(close.iloc[-1])
-    window = min(60, len(close))
-    support = float(close.tail(window).min())
-    resistance_near = float(close.tail(window).max())
-    resistance_major = float(close.max())
-
-    avg_vol_20 = float(vol.rolling(20).mean().iloc[-1]) if len(vol) >= 20 else None
-    vol_last = float(vol.iloc[-1]) if len(vol) else None
-
-    def _maybe_float(x):
-        try:
-            return float(x) if pd.notna(x) else None
-        except Exception:
-            return None
-
-    return {
-        "ticker": ticker,
-        "analysis_date": analysis_date,
-        "last_close": last,
-        "return_1m": _maybe_float(close.pct_change(21).iloc[-1]) if len(close) > 21 else None,
-        "return_3m": _maybe_float(close.pct_change(63).iloc[-1]) if len(close) > 63 else None,
-        "ma_50": _maybe_float(ma_50.iloc[-1]) if len(ma_50.dropna()) else None,
-        "ma_200": _maybe_float(ma_200.iloc[-1]) if len(ma_200.dropna()) else None,
-        "rsi_14": _maybe_float(rsi_14.iloc[-1]) if len(rsi_14.dropna()) else None,
-        "macd": _maybe_float(macd.iloc[-1]) if len(macd.dropna()) else None,
-        "macd_signal": _maybe_float(macd_sig.iloc[-1]) if len(macd_sig.dropna()) else None,
-        "macd_hist": _maybe_float(macd_hist.iloc[-1]) if len(macd_hist.dropna()) else None,
-        "volume_last": vol_last,
-        "avg_volume_20": avg_vol_20,
-        "support": support,
-        "resistance_near": resistance_near,
-        "resistance_major": resistance_major,
-        "data_confidence": "High" if len(close) >= 200 else ("Medium" if len(close) >= 60 else "Low"),
-    }
+    hist = hist.rename(columns={c: c.replace(" ", "") for c in hist.columns})
+    return tech_mod.build_technical_snapshot_dict(hist, ticker, analysis_date)
 
 
 # =========================
-# 3) Quarterly fetch (latest 5 quarters) – reuse your merge logic from data_pipeline
+# 3) Quarterly fetch (latest 5 quarters) — from fundamental_pipeline
 # =========================
 def fetch_quarterly_5_periods(ticker: str, periods: int = 5) -> Dict[str, pd.DataFrame]:
     tk = yf.Ticker(ticker)
 
-    income_raw = data_mod.merge_statement_sources(tk, ["quarterly_income_stmt", "quarterly_financials"])
-    balance_raw = data_mod.merge_statement_sources(tk, ["quarterly_balance_sheet", "quarterly_balancesheet"])
-    cash_raw = data_mod.merge_statement_sources(tk, ["quarterly_cashflow", "quarterly_cash_flow"])
+    income_raw = fund_mod.merge_statement_sources(tk, ["quarterly_income_stmt", "quarterly_financials"])
+    balance_raw = fund_mod.merge_statement_sources(tk, ["quarterly_balance_sheet", "quarterly_balancesheet"])
+    cash_raw = fund_mod.merge_statement_sources(tk, ["quarterly_cashflow", "quarterly_cash_flow"])
 
-    income_rows = data_mod.statement_to_rows(income_raw)
-    balance_rows = data_mod.statement_to_rows(balance_raw)
-    cash_rows = data_mod.statement_to_rows(cash_raw)
+    income_rows = fund_mod.statement_to_rows(income_raw)
+    balance_rows = fund_mod.statement_to_rows(balance_raw)
+    cash_rows = fund_mod.statement_to_rows(cash_raw)
 
     def tail_n(df: pd.DataFrame) -> pd.DataFrame:
         if df is None or df.empty:
@@ -203,12 +135,15 @@ def fetch_quarterly_5_periods(ticker: str, periods: int = 5) -> Dict[str, pd.Dat
 # =========================
 # 4) Prompt templates
 # =========================
+RATING_OPTIONS = "Overweight | Equal-weight | Hold | Underweight | Reduce"
+
 SYSTEM_PROMPT = (
     "You are a professional financial analyst. "
     "Always respond in valid JSON format only — no markdown, no preamble, no extra text outside JSON. "
     "All monetary values should be raw numbers (no currency symbols). "
     'Sentiment labels must be one of: "Strongly Positive", "Positive", "Neutral", '
-    '"Cautionary", "Negative", "Strongly Negative".'
+    '"Cautionary", "Negative", "Strongly Negative". '
+    f'When outputting a rating, you MUST use exactly one of: {RATING_OPTIONS}.'
 )
 
 PROMPT_1A = """Analyze the annual balance sheet and income statement data below for {TICKER}.
@@ -283,11 +218,15 @@ Return a JSON object with this exact schema:
 }}
 """
 
-PROMPT_1C = """Using the computed technical snapshot below (derived from Yahoo Finance price history) as of {ANALYSIS_DATE},
-generate the top 5 technical analysis signals for {TICKER}. Use commonly tracked indicators such as moving averages, RSI, MACD, volume patterns, and key support/resistance levels.
-If the snapshot is incomplete, clearly flag uncertainty in the relevant fields, but still provide the best available technical assessment.
+PROMPT_1C = """Using the technical snapshot below for {TICKER} as of {ANALYSIS_DATE}, generate the top 5 technical analysis signals.
+The "TECHNICAL SUMMARY (for LLM)" is a compact, high-info-density summary of key indicators; the JSON snapshot contains full numeric values.
+Use moving averages (SMA/EMA), RSI, MACD, Stoch, Williams %R, ATR, Bollinger Bands, volume (OBV/CMF/MFI), and support/resistance as relevant.
+If data is incomplete, flag uncertainty in the relevant fields but still provide the best available technical assessment.
 
-=== COMPUTED TECHNICAL SNAPSHOT (JSON) ===
+=== TECHNICAL SUMMARY (for LLM) ===
+{TECHNICAL_SUMMARY_TEXT}
+
+=== FULL TECHNICAL SNAPSHOT (JSON) ===
 {TECHNICAL_SNAPSHOT_JSON}
 
 Return a JSON object with this exact schema:
@@ -321,7 +260,7 @@ Return a JSON object with this exact schema:
 """
 
 PROMPT_2 = """Synthesize the fundamental and technical analyses below for {TICKER}. Identify where fundamentals and technicals diverge or converge,
-and produce a unified investment outlook with a price target matrix.
+and produce a unified investment outlook with a price target matrix and a single, hard rating.
 
 === ANNUAL FUNDAMENTAL ANALYSIS ===
 {OUTPUT_FROM_PROMPT_1A}
@@ -332,7 +271,7 @@ and produce a unified investment outlook with a price target matrix.
 === TECHNICAL ANALYSIS ===
 {OUTPUT_FROM_PROMPT_1C}
 
-Return a JSON object with this exact schema:
+Return a JSON object with this exact schema. The "rating" field is MANDATORY and must be exactly one of: Overweight | Equal-weight | Hold | Underweight | Reduce.
 {{
  "report_metadata": {{
    "company": string,
@@ -340,6 +279,8 @@ Return a JSON object with this exact schema:
    "analysis_date": string,
    "analysis_type": "Fundamental + Technical Synthesis"
  }},
+ "rating": "Overweight | Equal-weight | Hold | Underweight | Reduce",
+ "rating_rationale": string,
  "core_divergence": {{
    "fundamental_stance": string,
    "technical_stance": string,
@@ -378,7 +319,6 @@ def extract_json(text: str) -> Any:
     try:
         return json.loads(text)
     except json.JSONDecodeError:
-        # Fallback: try to find the first JSON object
         m = re.search(r"\{.*\}", text, flags=re.DOTALL)
         if not m:
             raise
@@ -448,11 +388,48 @@ def ensure_outputs_dir() -> Path:
     return out_dir
 
 
+# Canonical ratings: Overweight | Equal-weight | Hold | Underweight | Reduce
+RATING_ALIASES = {
+    "overweight": "Overweight",
+    "equal-weight": "Equal-weight",
+    "equalweight": "Equal-weight",
+    "hold": "Hold",
+    "underweight": "Underweight",
+    "reduce": "Reduce",
+    "buy": "Overweight",
+    "sell": "Reduce",
+    "neutral": "Equal-weight",
+}
+
+
+def normalize_rating(report: Dict[str, Any]) -> None:
+    """Enforce rating to a canonical English value; set rationale if missing."""
+    raw = (report.get("rating") or "").strip()
+    canonical = "Hold"
+    if raw:
+        raw_lower = raw.lower()
+        for alias, value in RATING_ALIASES.items():
+            if alias in raw_lower:
+                canonical = value
+                break
+        else:
+            if "overweight" in raw_lower or "buy" in raw_lower:
+                canonical = "Overweight"
+            elif "underweight" in raw_lower or "reduce" in raw_lower or "sell" in raw_lower:
+                canonical = "Reduce"
+            elif "equal" in raw_lower or "neutral" in raw_lower:
+                canonical = "Equal-weight"
+            elif "hold" in raw_lower:
+                canonical = "Hold"
+    report["rating"] = canonical
+    if not report.get("rating_rationale"):
+        report["rating_rationale"] = "Combined fundamental and technical synthesis."
+
+
 # =========================
-# 7) Orchestration: 1A/1B/1C -> 2
+# 7) Orchestration: pull fundamental + technical -> prompts -> LLM
 # =========================
 def main():
-    # Allow CLI usage: python gemini_pipeline.py AAPL
     if len(sys.argv) >= 2:
         ticker = sys.argv[1].strip().upper()
     else:
@@ -464,8 +441,8 @@ def main():
     analysis_date = os.getenv("ANALYSIS_DATE") or dt.date.today().isoformat()
     company_name = get_company_name(ticker)
 
-    # ---------- 2.a outputs (annual) ----------
-    annual_out = data_mod.fetch_annual_5_periods_with_metrics(ticker, periods=5)
+    # ---------- Fundamental data ----------
+    annual_out = fund_mod.fetch_annual_5_periods_with_metrics(ticker, periods=5)
     annual_bs = annual_out.get("balance_sheet", pd.DataFrame())
     annual_is = annual_out.get("income_statement", pd.DataFrame())
     annual_cf = annual_out.get("cash_flow", pd.DataFrame())
@@ -484,12 +461,12 @@ def main():
     q_bs_str = df_to_csv_str(q_out["quarterly_balance_sheet"], max_rows=6)
     q_is_str = df_to_csv_str(q_out["quarterly_income_statement"], max_rows=6)
 
-    # ---------- Technical snapshot ----------
+    # ---------- Technical data ----------
     tech_snap = fetch_technical_snapshot(ticker, analysis_date)
     tech_snap_json = safe_json_dumps(tech_snap)
+    technical_summary_text = tech_snap.get("technical_summary_text", "N/A")
 
     # ---------- Build prompts ----------
-    # (Optional) add company name hint to help Gemini fill metadata
     company_hint = f"\nCompany hint: {company_name}\n" if company_name else ""
 
     p1a = (company_hint + PROMPT_1A).format(
@@ -506,19 +483,18 @@ def main():
     p1c = PROMPT_1C.format(
         TICKER=ticker,
         ANALYSIS_DATE=analysis_date,
+        TECHNICAL_SUMMARY_TEXT=technical_summary_text,
         TECHNICAL_SNAPSHOT_JSON=tech_snap_json,
     )
 
-    # ---------- LLM client selection ----------
+    # ---------- LLM client ----------
     backend = os.getenv("LLM_BACKEND", "gemini").lower()
     if backend == "openai":
-        # CBS AI gateway for OpenAI
         base_url = os.getenv("OPENAI_BASE_URL", "https://cbsai.business.columbia.edu/api/v1")
         model = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
         client = OpenAI(base_url=base_url)
         runner = OpenAIRunner(model=model, client=client)
     else:
-        # Default: Gemini (original behavior)
         model = os.getenv("GEMINI_MODEL", "gemini-3-flash-preview")
         client = genai.Client()
         runner = GeminiRunner(model=model, client=client)
@@ -546,13 +522,13 @@ def main():
         OUTPUT_FROM_PROMPT_1C=safe_json_dumps(results.get("1C", {})),
     )
     final_report = runner.run_json(p2, temperature=0.2)
+    normalize_rating(final_report)
 
     # ---------- Save ----------
     out_dir = ensure_outputs_dir()
     out_path = out_dir / f"{ticker}_{analysis_date}_report.json"
     out_path.write_text(json.dumps(final_report, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # ---------- Print ----------
     print("\n=== FINAL REPORT (JSON) ===")
     print(json.dumps(final_report, ensure_ascii=False, indent=2))
     print(f"\nSaved to: {out_path}")
