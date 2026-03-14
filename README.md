@@ -5,7 +5,7 @@ A pipeline that pulls fundamental and price data for a given ticker, engineers f
 **End goal:** A fully automated workflow to analyze and record a ticker’s fundamentals and technicals, with reports that can be versioned and compared over time. The design is intended to evolve with LLM capabilities (better models, prompts, and tool use) so the pipeline stays current.
 
 Example reports are written to the `outputs/` directory. In this repo, a reference example is:
-- `outputs/POET_2026-03-12_1820_report.json`
+- `(NEWEST_OUTPUT_EXAMPLE) NVDA_2026-03-13_2231_report.json`
 
 ---
 
