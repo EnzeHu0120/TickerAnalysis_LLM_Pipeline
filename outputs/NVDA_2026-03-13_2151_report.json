@@ -1,0 +1,459 @@
+{
+  "report_metadata": {
+    "company": "NVIDIA Corporation",
+    "ticker": "NVDA",
+    "analysis_date": "2026-03-13",
+    "analysis_type": "Fundamental + Technical Synthesis",
+    "llm_backend": "gemini-vertex",
+    "llm_model": "gemini-3.1-pro-preview"
+  },
+  "rating": "Overweight",
+  "rating_rationale": "NVIDIA maintains unprecedented fundamental strength, characterized by >55% net margins, a fortress balance sheet (D/E of 0.07), and massive free cash flow generation that funds both aggressive R&D and consistent share repurchases. While top-line revenue growth is decelerating from its 114% peak to a still-massive 65%, and short-term technicals show negative momentum, the stock is approaching a critical low-risk entry point at the 200-day SMA. The upcoming GTC conference serves as a major near-term catalyst to reignite the structural AI growth narrative.",
+  "core_divergence": {
+    "fundamental_stance": "Strongly Positive",
+    "technical_stance": "Cautionary",
+    "divergence_summary": "Fundamentals indicate absolute market dominance with hyper-growth and pristine financial health, whereas technicals reflect a short-term momentum breakdown and consolidation, with the stock trading below its 20-day and 50-day moving averages."
+  },
+  "synthesized_signals": [
+    {
+      "rank": 1,
+      "signal": "Hyper-Profitability vs. Short-Term Momentum Breakdown",
+      "sentiment": "Cautionary",
+      "fundamental_driver": "Net income nearly doubled YoY to $42.96B in Q4 FY26 with operating margins exceeding 60%.",
+      "technical_driver": "MACD is negative and expanding downwards, with price breaking below the 50-day SMA (185.45).",
+      "synthesis": "The market is currently ignoring exceptional profitability in favor of short-term technical distribution. The low-volume nature of the pullback suggests this is a corrective phase rather than a structural trend reversal."
+    },
+    {
+      "rank": 2,
+      "signal": "Growth Deceleration vs. 200-Day SMA Support",
+      "sentiment": "Neutral",
+      "fundamental_driver": "Revenue growth decelerated from 114.2% in 2025 to 65.4% in 2026.",
+      "technical_driver": "Price (180.25) is approaching the critical long-term 200-day SMA support level at 177.37.",
+      "synthesis": "The technical pullback aligns with the fundamental reality of growth normalization. The 200-day SMA will serve as the ultimate test of whether the market accepts the new, slower (but still hyper-growth) trajectory."
+    },
+    {
+      "rank": 3,
+      "signal": "Fortress Balance Sheet vs. Geopolitical Risk",
+      "sentiment": "Positive",
+      "fundamental_driver": "Total equity surged to $157.29B with debt remaining flat at $11B (D/E 0.07).",
+      "technical_driver": "Oscillators (Stochastics/Williams %R) are approaching oversold territory.",
+      "synthesis": "NVIDIA's pristine balance sheet provides a massive buffer against external shocks, such as the highlighted geopolitical supply chain risks, allowing the company to weather macro volatility better than peers."
+    }
+  ],
+  "rating_dimensions": {
+    "expected_return_6_12m": "moderate_upside",
+    "thesis_conviction": "High",
+    "balance_sheet_risk": "Low",
+    "catalyst_quality": "High",
+    "valuation_stretch": "fair"
+  },
+  "signals": [
+    {
+      "type": "profitability",
+      "strength": "strong_positive",
+      "reason": "Operating margins expanded to over 60%, driving net income to $120.06B in 2026, demonstrating immense pricing power and structural operating leverage."
+    },
+    {
+      "type": "balance_sheet",
+      "strength": "strong_positive",
+      "reason": "Debt-to-equity ratio plummeted to 0.07, with total assets growing 5x to $206.80B funded almost entirely by retained earnings."
+    },
+    {
+      "type": "growth",
+      "strength": "positive",
+      "reason": "Revenue grew 65.4% YoY in 2026 to $215.93B; while this represents a deceleration from 2025's 114.2%, it remains exceptional at this scale."
+    },
+    {
+      "type": "momentum",
+      "strength": "cautious",
+      "reason": "Stock has broken below 20-day and 50-day SMAs with negative MACD momentum, though the pullback is occurring on below-average volume."
+    },
+    {
+      "type": "company_catalyst",
+      "strength": "strong_positive",
+      "reason": "Upcoming GTC 2026 Conference is expected to provide critical updates on new AI chips and long-term demand outlook."
+    },
+    {
+      "type": "risk",
+      "strength": "cautious",
+      "reason": "Geopolitical risks from Middle East conflicts threaten semiconductor supply chains and AI funding."
+    }
+  ],
+  "price_target_matrix": [
+    {
+      "scenario": "Bear",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 150.0,
+        "high": 170.0
+      },
+      "key_assumption": "Price breaks below the 200-day SMA (177.37) and structural support (170.93) due to accelerated revenue deceleration and severe geopolitical supply chain disruptions."
+    },
+    {
+      "scenario": "Consensus",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 195.0,
+        "high": 210.0
+      },
+      "key_assumption": "Stock successfully defends the 200-day SMA, and the GTC conference reassures markets of sustained, albeit normalizing, AI infrastructure demand."
+    },
+    {
+      "scenario": "Bull",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 220.0,
+        "high": 250.0
+      },
+      "key_assumption": "GTC conference reveals stronger-than-expected product pricing power and demand, triggering a high-volume breakout above major resistance at 207.02."
+    }
+  ],
+  "overall_outlook": "NVIDIA remains a generational compounder with unparalleled fundamentals. The company has successfully translated explosive revenue growth into a fortress balance sheet and >55% net margins. While top-line growth is naturally decelerating from its triple-digit peak and short-term technicals indicate a momentum pullback, the underlying business is stronger than ever. The current technical weakness toward the 200-day SMA presents a compelling risk/reward opportunity for long-term investors, especially with the GTC 2026 conference looming as a major positive catalyst. Geopolitical risks and growth normalization warrant monitoring, but the pristine balance sheet heavily mitigates downside financial risk.",
+  "key_risks": [
+    "Geopolitical escalation in the Middle East disrupting critical semiconductor supply chains (e.g., helium, bromine) and AI funding.",
+    "Sharper-than-expected deceleration in top-line revenue growth in upcoming quarters.",
+    "Technical breakdown below the 200-day SMA (177.37) and major structural support (170.93)."
+  ],
+  "key_catalysts": [
+    "Nvidia GTC 2026 Conference product announcements and demand commentary.",
+    "Next quarterly earnings report to assess the trajectory of revenue growth deceleration.",
+    "Integration and updates regarding the $2B Lumentum advanced AI optics partnership."
+  ],
+  "structured_catalysts": [
+    {
+      "category": "company",
+      "description": "Upcoming Nvidia GTC 2026 Conference expected to reveal details on latest products and AI demand outlook.",
+      "time_horizon": "short_term",
+      "confidence": "High",
+      "impact_level": "High",
+      "direction": "mixed",
+      "source_type": "inferred",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "",
+      "evidence_summary": "Upcoming Nvidia GTC 2026 Conference expected to reveal details on latest products and AI demand outlook."
+    },
+    {
+      "category": "industry",
+      "description": "Geopolitical risks from escalating Middle East conflict threatening AI supply chains and funding.",
+      "time_horizon": "medium_term",
+      "confidence": "Medium",
+      "impact_level": "Medium",
+      "direction": "mixed",
+      "source_type": "inferred",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "",
+      "evidence_summary": "Geopolitical risks from escalating Middle East conflict threatening AI supply chains and funding."
+    },
+    {
+      "category": "company",
+      "description": "Deceleration in top-line revenue growth compared to previous hyper-growth periods.",
+      "time_horizon": "medium_term",
+      "confidence": "High",
+      "impact_level": "High",
+      "direction": "mixed",
+      "source_type": "inferred",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "",
+      "evidence_summary": "Deceleration in top-line revenue growth compared to previous hyper-growth periods."
+    },
+    {
+      "category": "company",
+      "description": "Strategic $2 billion investment and multiyear agreements with Lumentum Holdings for advanced AI optics.",
+      "time_horizon": "long_term",
+      "confidence": "High",
+      "impact_level": "Medium",
+      "direction": "mixed",
+      "source_type": "inferred",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "",
+      "evidence_summary": "Strategic $2 billion investment and multiyear agreements with Lumentum Holdings for advanced AI optics."
+    },
+    {
+      "category": "company",
+      "description": "Improvement in balance sheet resilience through rapid deleveraging and retained earnings expansion.",
+      "time_horizon": "long_term",
+      "confidence": "High",
+      "impact_level": "Low",
+      "direction": "mixed",
+      "source_type": "inferred",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "",
+      "evidence_summary": "Improvement in balance sheet resilience through rapid deleveraging and retained earnings expansion."
+    }
+  ],
+  "rating_raw_model": "Overweight",
+  "archetype": {
+    "type": "mature_large_cap_compounder",
+    "confidence": "Medium",
+    "rationale": "Large market cap with positive earnings."
+  },
+  "catalyst_inputs_debug": {
+    "ticker": "NVDA",
+    "analysis_date": "2026-03-13",
+    "company_news": [
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T23:45:00",
+        "headline": "Wall Street's Favorite Artificial Intelligence (AI) Bargain Stock for 2026 Is Hiding in Plain Sight",
+        "summary": "Nvidia may be the world's largest company, but Wall Street thinks it's only going to get bigger.",
+        "url": "https://finnhub.io/api/news?id=e82acce1687f065d735a2c2b76440585b0103082e599538d6cf6b9b2cd63cdcd"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T23:35:00",
+        "headline": "Is it Time to Buy the Dip on e.l.f. Beauty Stock?",
+        "summary": "Cosmetics maker e.l.f. Beauty has lost two-thirds of its value since its 2024 highs.",
+        "url": "https://finnhub.io/api/news?id=c39474265f6e27c1650213e15ce9e7e3f0d9caa3fae6fe89b6dc7eaf10ef9c0a"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T23:15:00",
+        "headline": "1 Billionaire Just Bought Nearly $2 Billion of This Brilliant AI Investment",
+        "summary": "Bill Ackman loaded up on Meta Platforms stock during Q4.",
+        "url": "https://finnhub.io/api/news?id=49f736e9630ebb753382839964523e2e6c63977c418497aa49d81879a6c04836"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T22:59:00",
+        "headline": "Oracle Shares Jump on Strong Outlook. Is It Time to Buy the Stock?",
+        "summary": "Oracle shares have been volatile over the past year.",
+        "url": "https://finnhub.io/api/news?id=43d3048cde352bf07b480108ea0f2b7782ea3c9d9c1e3682d45cfb6a2c7ed8af"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T22:50:00",
+        "headline": "Is Eli Lilly's Weight Loss Empire in Trouble?",
+        "summary": "It won't be easy to knock the company off its pedestal.",
+        "url": "https://finnhub.io/api/news?id=69d11c108730a95d6e516944024327178bd48402b67e3787d6cc70d7006a289d"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T22:31:12",
+        "headline": "Why Unusual Machines Stock Soared This Week",
+        "summary": "This drone stock flew higher in early March, and it hasn't let up yet.",
+        "url": "https://finnhub.io/api/news?id=ba6bba49bcb85362764e6077f222f2039e18dc2fa624c9cd4f8b2f1ae9adc69b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T22:25:00",
+        "headline": "3 Dirt-Cheap Stocks to Buy With $1,000 Right Now",
+        "summary": "As the old adage goes, cheap stocks are cheap for a reason. But the reason might not be a good one.",
+        "url": "https://finnhub.io/api/news?id=3660bbf38235fa1c823f7d35efbc954874e848d5c58e59bb5f641e0a634d7810"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T22:13:00",
+        "headline": "Is This ETF the Best Way to Invest in the S&P 500 Right Now?",
+        "summary": "It can help hedge against too much tech concentration.",
+        "url": "https://finnhub.io/api/news?id=b6920f5b9ad70da118c8174592442eb710e8a5cb8ede04b26ccf18bbd6829bb0"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:56:24",
+        "headline": "Dow Jones Futures: Oil Prices, Iran War Drive Stocks Lower; Nvidia GTC, Micron Earnings Due",
+        "summary": "The stock market fell for a third straight week, breaking or testing key levels, as oil prices soared amid the Iran war. Nvidia GTC and Micron earnings loom.",
+        "url": "https://finnhub.io/api/news?id=b986800831cad623690910ce1b40ab9c993dfaf6a0f4ee0b4d76673e4ebb8094"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:50:00",
+        "headline": "2 Tech Stocks Built to Compound for a Decade",
+        "summary": "In a way, these successful tech leaders are just getting started.",
+        "url": "https://finnhub.io/api/news?id=a468d2c5a9a5a583d9fcf260849890502f4a0cd5991eb658907d5d5e364a607f"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:46:16",
+        "headline": "Fed Meeting, PPI, Nvidia Confernce: What to Watch Next Week",
+        "summary": "The Federal Reserve's interest-rate decision dominates next week's calendar. Investors will also closely monitor February’s producer-price index for inflation signals, alongside a corporate earnings slate featuring Micron, Lululemon and FedEx.",
+        "url": "https://finnhub.io/api/news?id=da29a4a6436c12678f5bce7134f4aa8d9f0fece9bf17ca6c55cf5773a259d954"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:36:06",
+        "headline": "What To Expect From Nvidia’s GTC—the So-Called ‘Woodstock of AI'",
+        "summary": "Nvidia is set to kick off its weeklong GPU Technology Conference on Monday, where the AI chip leader is expected to offer more details on its latest products.",
+        "url": "https://finnhub.io/api/news?id=d43a6595270bfa1480436a5fbd76d4078a80b5cd898e4e7fab5f9af4b3b1c966"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:29:42",
+        "headline": "Stock Market Today, March 13: Nvidia Slips as GTC 2026 Conference Looms",
+        "summary": "On March 13, 2026, investors weighed Nvidia's GTC outlook, massive AI chip demand, and long-term free cash flow runway.",
+        "url": "https://finnhub.io/api/news?id=fee2fa86e896b8e6d47a7a97427ca2797ed80fd2dcca1ce32430e187bfa3b2d6"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:25:00",
+        "headline": "Is Ford's F-150 Lightning EREV the Next Costly Mistake?",
+        "summary": "For investors nervous about Ford's potential lateral move into EREVs with the F-150 Lightning, this should help calm the anxiety.",
+        "url": "https://finnhub.io/api/news?id=75386ebf170bde0b5e6824f9d2d9ba2898f6374430bbae0ca86a0db5cf3f1c2c"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:13:46",
+        "headline": "A Look At Lumentum Holdings (LITE) Valuation After Nvidia Investment And S&P 500 Inclusion",
+        "summary": "Nvidia’s US$2b investment and multiyear agreements with Lumentum Holdings (LITE) around advanced optics for AI, combined with Lumentum’s pending entry into the S&P 500, have sharply refocused attention on the stock. See our latest analysis for Lumentum Holdings. Despite a 1-day share price return of negative 8.32% and a 7-day share price return of negative 5.34%, Lumentum’s 90-day share price return of 89.95% and very large 1-year total shareholder return suggest momentum has been strong,...",
+        "url": "https://finnhub.io/api/news?id=fd1403bbcec0c1b5df3fdfc3dff64a68fc425c85689520e915a0f989a0da6a15"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T21:13:00",
+        "headline": "The Best 3 Consumer Staples Stocks to Buy and Hold for Decades",
+        "summary": "This trio may not be the first staples stocks that come to mind, but they offer dependable dividends and upside potential.",
+        "url": "https://finnhub.io/api/news?id=2be7b186e8794f719c890c6eb90a0394c3d6e3eb332c3c9e198b4a9277fe7815"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:50:00",
+        "headline": "The Best Stock to Invest $500 in Right Now",
+        "summary": "The Trade Desk has sold off heavily in the past few months.",
+        "url": "https://finnhub.io/api/news?id=4a9197bfacd0828c78000168f4dd7eca84701da6e4d034044aba3e1399179475"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:45:46",
+        "headline": "Iran War Drags Stocks Lower",
+        "summary": "The S&P 500 Index ($SPX ) (SPY ) on Friday closed down -0.61%, the Dow Jones Industrial Average ($DOWI ) (DIA ) closed down -0.26%, and the Nasdaq 100 Index ($IUXX ) (QQQ ) closed down -0.62%. March E-mini S&P futures (ESH26 ) fell -0.60%, and March E-mini Nasdaq futures...",
+        "url": "https://finnhub.io/api/news?id=92cc5bb01dc1a07e34d1d92e66a5cede5c3c9391bfdeff35f68126b74bdd2f9d"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:41:00",
+        "headline": "Nvidia Stock: Buy, Sell, or Hold?",
+        "summary": "Nvidia's revenue growth is accelerating, and margins are expanding. But does the stock's valuation leave enough room for the risks?",
+        "url": "https://finnhub.io/api/news?id=620e9d1bf4fbb3b7009803d2116ae6c793c13663d9a43ca1cb49047d933a5838"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:33:00",
+        "headline": "Could Investing $10,000 in Costco Wholesale Make You Richer?",
+        "summary": "A company selling $1.50 hot dogs has made investors very wealthy over the past few decades.",
+        "url": "https://finnhub.io/api/news?id=450348159b245fe4859e421149dda08807c9ea8ae03bec9c31a9bb04444da230"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:20:00",
+        "headline": "2 Top Tech Stocks to Buy in March",
+        "summary": "These companies are built for long-term sustained success.",
+        "url": "https://finnhub.io/api/news?id=d8063030b4d0f7838a4d3003201ca24009a2ddf937ea0aeb56f421fcebcd9e91"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:09:53",
+        "headline": "Why Micron Stock Is Gaining Today",
+        "summary": "Despite sell-offs for many tech stocks, Micron's share price is moving higher today.",
+        "url": "https://finnhub.io/api/news?id=9cb32ceb1f000f4608718106b0695ae8bcd168dd7ba398a3b2f36446a875c7a0"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:09:00",
+        "headline": "Liberty All-Star® Equity Fund February 2026 Monthly Update",
+        "summary": "BOSTON, March 13, 2026--Liberty All-Star® Equity Fund February 2026 Monthly Update",
+        "url": "https://finnhub.io/api/news?id=aff774e1c79b4e26afc2cfca8c5d122fa8907729d0b389f67732f512e329139d"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:08:00",
+        "headline": "Liberty All-Star® Growth Fund, Inc. February 2026 Monthly Update",
+        "summary": "BOSTON, March 13, 2026--Liberty All-Star® Growth Fund, Inc. February 2026 Monthly Update",
+        "url": "https://finnhub.io/api/news?id=ad5bfd0c2dbedcf9346c9cdefcf0b17210aa2b6684a8a8fb73d93085e669cf40"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T20:05:00",
+        "headline": "Dow Slips as Oil Prices Climb Amid Escalating Iran Conflict",
+        "summary": "The Iran war has pushed the Dow into the red for 2026.",
+        "url": "https://finnhub.io/api/news?id=c15054e9770cb0c4eb4bd9e0b47987767f3f78f9247319087dc0bea151d6988b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T19:50:00",
+        "headline": "Is USA Rare Earth Stock a Millionaire Maker?",
+        "summary": "USA Rare Earth's stock has attracted significant investor attention amid U.S. efforts to secure domestic rare-earth production.",
+        "url": "https://finnhub.io/api/news?id=391a86391aebc633d2b27a35857518408fb9797a80e2845cea00f60394dbddec"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T19:46:12",
+        "headline": "Sector Update: Tech Stocks Mixed Late Afternoon",
+        "summary": "Tech stocks were mixed late Friday afternoon, with the State Street Technology Select Sector SPDR ET",
+        "url": "https://finnhub.io/api/news?id=af5d1fc619bab664b5148613bd0655e3a2c6ad2e399a08bd511328d15a074338"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T19:17:12",
+        "headline": "The Best Blue Chip Stock to Buy After This Year's Market Pullback",
+        "summary": "Amazon is a great stock to accumulate as the bulls look the other way.",
+        "url": "https://finnhub.io/api/news?id=0ba3e5cb6abe4ea19eaf46b210a1039e08ce7876a1f2b4893c248c2fdffe8839"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T19:11:23",
+        "headline": "How The Himadri Speciality Chemical (BSE:500184) Narrative Is Evolving With An Unchanged ₹470 Target",
+        "summary": "The fair value estimate for Himadri Speciality Chemical holds steady at ₹470, with no revision to the headline price target. Analysts link this unchanged target to a shared valuation framework that balances growth expectations, profitability assumptions, and the applied discount rate, with only small tweaks to the underlying model inputs. As you read on, you will see how these quiet adjustments shape the evolving narrative around risk, reward, and what to watch next. Analyst Price Targets...",
+        "url": "https://finnhub.io/api/news?id=fb4f9abed412c01731a6245964933871e73f51d13aec6049be222211f202e624"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "NVDA",
+        "published_at": "2026-03-13T19:11:00",
+        "headline": "How the Iran War Could Upend AI",
+        "summary": "It isn’t just oil that’s at risk in an extended war. Key chip-making ingredients like helium and bromine come from the Middle East—as does an increasing amount of AI funding.",
+        "url": "https://finnhub.io/api/news?id=158316735baa040ee4a5f243902ba9835d8ab34fb623c45a7929834a622d350a"
+      }
+    ],
+    "fundamental_inferred": [
+      {
+        "category": "company",
+        "description": "Revenue growth has decelerated or turned down recently.",
+        "source_type": "inferred",
+        "direction": "negative",
+        "evidence": {
+          "rev_growth_last": 0.6547353579009478,
+          "rev_growth_prev": 1.1420340763599355
+        }
+      },
+      {
+        "category": "company",
+        "description": "Leverage (debt-to-equity) has decreased, improving balance sheet resilience.",
+        "source_type": "inferred",
+        "direction": "positive",
+        "evidence": {
+          "d2e_change_last": -0.4422197372065124
+        }
+      }
+    ],
+    "technical_inferred": [],
+    "industry_candidates": []
+  }
+}

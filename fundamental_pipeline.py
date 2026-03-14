@@ -212,23 +212,75 @@ def fetch_annual_5_periods_with_metrics(ticker: str, periods: int = 5) -> dict[s
     pretax_income = pick_first_available(income, ["Pretax Income", "PretaxIncome", "Income Before Tax", "IncomeBeforeTax"])
     tax_provision = pick_first_available(income, ["Tax Provision", "TaxProvision", "Income Tax Expense", "IncomeTaxExpense"])
 
+    # Cash-flow inputs for investment-oriented metrics
+    cfo = pick_first_available(
+        cash,
+        [
+            "Total Cash From Operating Activities",
+            "TotalCashFromOperatingActivities",
+            "Net Cash Provided by Operating Activities",
+            "NetCashProvidedByOperatingActivities",
+        ],
+    )
+    capex = pick_first_available(
+        cash,
+        [
+            "Capital Expenditures",
+            "CapitalExpenditures",
+            "Purchase Of Property Plant And Equipment",
+            "PurchaseOfPropertyPlantAndEquipment",
+        ],
+    )
+    rd_expense = pick_first_available(
+        income,
+        ["Research Development", "ResearchAndDevelopment"],
+    )
+
+    total_revenue_num = pd.to_numeric(total_revenue, errors="coerce")
+    operating_income_num = pd.to_numeric(operating_income, errors="coerce")
+    net_income_num = pd.to_numeric(net_income, errors="coerce")
+    pretax_income_num = pd.to_numeric(pretax_income, errors="coerce")
+    tax_provision_num = pd.to_numeric(tax_provision, errors="coerce")
+    total_assets_num = pd.to_numeric(total_assets, errors="coerce")
+    total_debt_num = pd.to_numeric(total_debt, errors="coerce")
+    total_equity_num = pd.to_numeric(total_equity, errors="coerce")
+    cfo_num = pd.to_numeric(cfo, errors="coerce")
+    capex_num = pd.to_numeric(capex, errors="coerce")
+    rd_num = pd.to_numeric(rd_expense, errors="coerce")
+
+    free_cash_flow = cfo_num - capex_num
+    revenue_growth_yoy = yoy_pct_change(total_revenue_num)
+    net_income_growth_yoy = yoy_pct_change(net_income_num)
+
+    capex_intensity = safe_div(-capex_num, total_revenue_num)
+    rd_intensity = safe_div(rd_num, total_revenue_num)
+
+    net_debt = total_debt_num  # we do not always have reliable cash balance history
+
     metrics = pd.DataFrame(
         {
             "FiscalYear": anchor_dates.year.astype(int),
-            "TotalRevenue": pd.to_numeric(total_revenue, errors="coerce"),
-            "OperatingIncome": pd.to_numeric(operating_income, errors="coerce"),
-            "NetIncome": pd.to_numeric(net_income, errors="coerce"),
-            "PretaxIncome": pd.to_numeric(pretax_income, errors="coerce"),
-            "TaxProvision": pd.to_numeric(tax_provision, errors="coerce"),
-            "TotalAssets": pd.to_numeric(total_assets, errors="coerce"),
-            "TotalDebt": pd.to_numeric(total_debt, errors="coerce"),
-            "TotalEquity": pd.to_numeric(total_equity, errors="coerce"),
-            "Debt_to_Equity": safe_div(total_debt, total_equity),
-            "Asset_Growth_YoY": yoy_pct_change(total_assets),
-            "Debt_Growth_YoY": yoy_pct_change(total_debt),
-            "Operating_Margin": safe_div(operating_income, total_revenue),
-            "Net_Margin": safe_div(net_income, total_revenue),
-            "Effective_Tax_Rate": safe_div(tax_provision, pretax_income),
+            "TotalRevenue": total_revenue_num,
+            "OperatingIncome": operating_income_num,
+            "NetIncome": net_income_num,
+            "PretaxIncome": pretax_income_num,
+            "TaxProvision": tax_provision_num,
+            "TotalAssets": total_assets_num,
+            "TotalDebt": total_debt_num,
+            "TotalEquity": total_equity_num,
+            "Debt_to_Equity": safe_div(total_debt_num, total_equity_num),
+            "Asset_Growth_YoY": yoy_pct_change(total_assets_num),
+            "Debt_Growth_YoY": yoy_pct_change(total_debt_num),
+            "Operating_Margin": safe_div(operating_income_num, total_revenue_num),
+            "Net_Margin": safe_div(net_income_num, total_revenue_num),
+            "Effective_Tax_Rate": safe_div(tax_provision_num, pretax_income_num),
+            # Investment-oriented metrics
+            "Revenue_Growth_YoY": revenue_growth_yoy,
+            "NetIncome_Growth_YoY": net_income_growth_yoy,
+            "Free_Cash_Flow": free_cash_flow,
+            "Capex_Intensity": capex_intensity,
+            "RD_Intensity": rd_intensity,
+            "Net_Debt_Proxy": net_debt,
         },
         index=anchor_dates,
     )

@@ -260,6 +260,47 @@ def build_technical_snapshot_dict(
     if len(close) > 63:
         return_3m = _maybe_float(close.pct_change(63).iloc[-1])
 
+    # 52-week high/low distance
+    lookback_52w = min(252, len(close))
+    dist_to_high_52w = None
+    dist_to_low_52w = None
+    if lookback_52w > 0 and last_close is not None:
+        window_close = close.tail(lookback_52w)
+        high_52w = _maybe_float(window_close.max())
+        low_52w = _maybe_float(window_close.min())
+        if high_52w is not None and high_52w > 0:
+            dist_to_high_52w = (last_close - high_52w) / high_52w
+        if low_52w is not None and low_52w > 0:
+            dist_to_low_52w = (last_close - low_52w) / low_52w
+
+    # Simple trend / volatility regimes for research context
+    trend_regime = "unknown"
+    if last_close is not None and get_last("sma_50") is not None and get_last("sma_200") is not None:
+        ma50 = get_last("sma_50")
+        ma200 = get_last("sma_200")
+        if last_close > ma50 > ma200:
+            trend_regime = "strong_uptrend"
+        elif last_close < ma50 < ma200:
+            trend_regime = "strong_downtrend"
+        elif ma50 is not None and ma200 is not None and ma50 > ma200:
+            trend_regime = "uptrend"
+        elif ma50 is not None and ma200 is not None and ma50 < ma200:
+            trend_regime = "downtrend"
+
+    vol_regime = "unknown"
+    if "bb_width" in out.columns:
+        bw_series = out["bb_width"].dropna()
+        if len(bw_series) > 20:
+            last_bw = _maybe_float(bw_series.iloc[-1])
+            pct_bw = (bw_series < last_bw).sum() / len(bw_series) if last_bw is not None else None
+            if pct_bw is not None:
+                if pct_bw >= 0.8:
+                    vol_regime = "high_volatility"
+                elif pct_bw <= 0.2:
+                    vol_regime = "low_volatility"
+                else:
+                    vol_regime = "normal_volatility"
+
     snapshot = {
         "ticker": ticker,
         "analysis_date": analysis_date,
@@ -288,6 +329,10 @@ def build_technical_snapshot_dict(
         "support": support,
         "resistance_near": resistance_near,
         "resistance_major": resistance_major,
+        "dist_to_high_52w": dist_to_high_52w,
+        "dist_to_low_52w": dist_to_low_52w,
+        "trend_regime": trend_regime,
+        "volatility_regime": vol_regime,
         "data_confidence": "High" if len(close) >= 200 else ("Medium" if len(close) >= 60 else "Low"),
     }
     snapshot["technical_summary_text"] = technical_summary_for_llm(out, last_n=5)

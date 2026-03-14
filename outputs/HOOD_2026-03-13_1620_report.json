@@ -1,0 +1,480 @@
+{
+  "report_metadata": {
+    "company": "Robinhood Markets, Inc.",
+    "ticker": "HOOD",
+    "analysis_date": "2026-03-13",
+    "analysis_type": "Fundamental + Technical Synthesis",
+    "llm_backend": "gemini-vertex",
+    "llm_model": "gemini-3.1-pro-preview"
+  },
+  "rating": "Equal-weight",
+  "rating_rationale": "Robinhood presents a stark divergence between exceptional fundamental performance and a severely broken technical chart. Fundamentally, the company achieved a massive turnaround in 2025, generating $1.88 billion in net income on $4.47 billion in revenue (>50% YoY growth). However, recent declines in average daily trading volumes, a Q4 spike in cost of revenue, and broader margin compression fears have triggered a 46% technical drawdown. While the valuation is becoming attractive relative to its growth rate, the intense negative momentum and mixed near-term operating metrics warrant a neutral stance until technical stabilization occurs.",
+  "core_divergence": {
+    "fundamental_stance": "Strongly Positive",
+    "technical_stance": "Strongly Negative",
+    "divergence_summary": "Fundamentals indicate a hyper-growth, highly profitable compounder with a repairing balance sheet, whereas technicals reflect capitulation, severe downward momentum, and market pessimism tied to recent volume declines and margin pressures."
+  },
+  "synthesized_signals": [
+    {
+      "rank": 1,
+      "signal": "Exceptional Profitability vs. Margin Pressure Fears",
+      "sentiment": "Neutral",
+      "fundamental_driver": "Net income swung to $1.88 billion in 2025 with operating margins reaching 46.8%, alongside sequential pretax income growth.",
+      "technical_driver": "A Q4 anomaly in cost of revenue (doubling YoY) and recent margin compression reports have spooked investors, contributing to the stock's 46% slide.",
+      "synthesis": "While annual profitability is stellar, the market is heavily discounting the stock due to fears that peak margins have passed and costs are re-accelerating."
+    },
+    {
+      "rank": 2,
+      "signal": "Asset Growth vs. Declining Trading Volumes",
+      "sentiment": "Cautionary",
+      "fundamental_driver": "Total assets grew over 45% YoY to $38.14 billion, with February platform assets surging 68% YoY.",
+      "technical_driver": "Average daily trading volumes for equities and options declined in February, driving immediate technical selling pressure and a break below the 200-day SMA.",
+      "synthesis": "Robinhood is successfully gathering assets, but its revenue remains highly sensitive to trading velocity, which is currently waning."
+    },
+    {
+      "rank": 3,
+      "signal": "Balance Sheet Leverage Normalization",
+      "sentiment": "Positive",
+      "fundamental_driver": "Total debt spiked to $15.66 billion in Q3 but saw a sharp $4 billion sequential reduction in Q4 to $11.62 billion.",
+      "technical_driver": "The stock's elevated volume and mild accumulation (CMF 0.11) suggest some institutional buyers may be recognizing the balance sheet de-risking.",
+      "synthesis": "Management is actively managing leverage, reducing the financial risk that accumulated during the mid-2025 expansion phase."
+    }
+  ],
+  "rating_dimensions": {
+    "expected_return_6_12m": "moderate_upside",
+    "thesis_conviction": "Medium",
+    "balance_sheet_risk": "Medium",
+    "catalyst_quality": "Medium",
+    "valuation_stretch": "fair"
+  },
+  "signals": [
+    {
+      "type": "profitability",
+      "strength": "strong_positive",
+      "reason": "Achieved a dramatic turnaround to $1.88 billion in net income in 2025 with operating margins expanding to 46.8%."
+    },
+    {
+      "type": "growth",
+      "strength": "strong_positive",
+      "reason": "Total revenue accelerated to $4.47 billion in 2025, representing YoY growth rates exceeding 50%."
+    },
+    {
+      "type": "momentum",
+      "strength": "strong_negative",
+      "reason": "Stock is locked in a severe downtrend, trading significantly below its 20-day, 50-day, and 200-day moving averages."
+    },
+    {
+      "type": "balance_sheet",
+      "strength": "positive",
+      "reason": "Despite an annual increase in debt, Q4 saw a sharp $4 billion sequential reduction in total debt and consistent retained earnings deficit repair."
+    },
+    {
+      "type": "company_catalyst",
+      "strength": "cautious",
+      "reason": "Mixed February operating data showed strong asset gathering but concerning declines in average daily trading volumes."
+    }
+  ],
+  "price_target_matrix": [
+    {
+      "scenario": "Bear",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 55.0,
+        "high": 65.0
+      },
+      "key_assumption": "Trading volumes continue to decline, Q4 cost of revenue spike becomes a structural margin drag, and support at 71.12 breaks decisively."
+    },
+    {
+      "scenario": "Consensus",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 90.0,
+        "high": 110.0
+      },
+      "key_assumption": "Fundamentals anchor the stock, allowing it to reclaim the 50-day and 200-day moving averages as margin pressures prove transitory."
+    },
+    {
+      "scenario": "Bull",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 125.0,
+        "high": 150.0
+      },
+      "key_assumption": "Crypto volumes surge, the 'Super App' prediction market launch is highly successful, and >50% revenue growth is sustained into 2026."
+    }
+  ],
+  "overall_outlook": "Robinhood Markets (HOOD) is currently a battleground stock. On a fundamental basis, the company has executed flawlessly over the past year, transitioning from deep losses to nearly $1.9 billion in net income while growing top-line revenue by over 50%. The balance sheet is expanding healthily without diluting shareholders. However, the market is forward-looking, and recent data indicating a slowdown in daily trading volumes, combined with a sudden Q4 spike in cost of revenue, has triggered a brutal technical selloff. The stock is technically broken and approaching oversold territory. While the long-term fundamental thesis remains highly compelling, investors should wait for technical stabilization and confirmation that margin compression is not a structural trend before initiating new long positions.",
+  "key_risks": [
+    "Continued decline in average daily trading volumes (equities, options, event contracts).",
+    "Structural margin compression if the Q4 2025 cost of revenue spike persists.",
+    "Technical breakdown below the critical 71.12 support level triggering capitulation.",
+    "Regulatory risks surrounding the launch of prediction markets and event contracts."
+  ],
+  "key_catalysts": [
+    "Monthly operating data releases (DARTs, net deposits, trading volumes).",
+    "Bitcoin and broader cryptocurrency price action driving crypto trading revenues.",
+    "CFTC rulemaking updates and official product launches for Robinhood's prediction markets.",
+    "Q1 2026 earnings report to confirm whether Q4 cost spikes were anomalous or structural."
+  ],
+  "structured_catalysts": [
+    {
+      "category": "company",
+      "description": "Mixed February operating data showing strong YoY growth in platform assets and net deposits, offset by recent declines in average daily trading volume.",
+      "time_horizon": "short_term",
+      "confidence": "High",
+      "impact_level": "High"
+    },
+    {
+      "category": "company",
+      "description": "Material compression in net margins and increasing leverage signaling potential weakening of financial health.",
+      "time_horizon": "medium_term",
+      "confidence": "High",
+      "impact_level": "High"
+    },
+    {
+      "category": "company",
+      "description": "Strategic expansion into prediction markets as part of a 'Super App' vision, amidst evolving CFTC regulations.",
+      "time_horizon": "medium_term",
+      "confidence": "Medium",
+      "impact_level": "Medium"
+    },
+    {
+      "category": "industry",
+      "description": "Strong Bitcoin rally providing a bright spot for crypto trading volumes, though broader crypto volatility remains a risk.",
+      "time_horizon": "short_term",
+      "confidence": "Medium",
+      "impact_level": "Medium"
+    },
+    {
+      "category": "speculative",
+      "description": "Severe technical breakdown and negative momentum, with the stock trading significantly below key moving averages and facing analyst PT cuts.",
+      "time_horizon": "short_term",
+      "confidence": "High",
+      "impact_level": "High"
+    }
+  ],
+  "rating_raw_model": "Hold",
+  "archetype": {
+    "type": "mature_large_cap_compounder",
+    "confidence": "Medium",
+    "rationale": "Large market cap with positive earnings."
+  },
+  "catalyst_inputs_debug": {
+    "ticker": "HOOD",
+    "analysis_date": "2026-03-13",
+    "company_news": [
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T19:05:03",
+        "headline": "Explore the S&P500 index on Friday and find out which stocks are the most active in today's session.",
+        "summary": "Curious about the most active S&P500 stocks in today's session? Join us as we explore the US markets on Friday and uncover the stocks that are leading the way in terms of trading volume and market attention.",
+        "url": "https://finnhub.io/api/news?id=4b2194f15d0c5e8d63b124ac885f8f17865b2069bf0f823d4eb6261746ee706b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T18:56:51",
+        "headline": "3 Stocks Turning Heads After Hours",
+        "summary": "Adobe, Ulta and Robinhood react to updates",
+        "url": "https://finnhub.io/api/news?id=9e1b2066b78ac7246898dd3f68e8c27f6f068b95fc3b59d5bcee35065ea3ec93"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T16:47:22",
+        "headline": "Crypto Currents: CFTC affirms crypto oversight alignment with SEC",
+        "summary": "Claim 70% Off TipRanks PremiumUnlock hedge fund-level data and powerful investing tools for smarter, sharper decisions Stay ahead of the market with the latest news and analysis and maximize your portfolio's potential An oil-tanker attack in Iraqi waters sent Brent crude soaring more than 10% back above $100 per barrel Thursday, dragging bitcoin (BTC-USD) down roughly 2% to around $69,600 in Asian trading, according to Bloomberg. The macro headwind, however, landed on one of the busiest regulato",
+        "url": "https://finnhub.io/api/news?id=38286b285b1a67f755d4c64dce03a573ce3905a5410e1617b699bf87fee5203b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T16:31:00",
+        "headline": "Robinhood Stock Falls on Trading Volume Data. Crypto Is a Bright Spot.",
+        "summary": "Average daily trading volume for equities, options, and event contracts declined in February, Robinhood reports.",
+        "url": "https://finnhub.io/api/news?id=055873472f97377dfb876d7e545bd359c4800ab477805dd2c85436545d45e8c0"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T15:49:00",
+        "headline": "Robinhood Reports Y/Y Rise in February Equity & Options DARTs",
+        "summary": "HOOD reports higher equity and options DARTs for February 2026, while platform assets surge 68% YoY to $314.2B amid strong deposits and rising trading activity.",
+        "url": "https://finnhub.io/api/news?id=8f90d1ef64265d8ea90989c5650498da3a22a57c45891e2bdcb94ab0bc4a3437"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T15:15:01",
+        "headline": "Coinbase stock rises on bitcoin rally, Carvana approves stock split",
+        "summary": "Yahoo Finance Markets and Data Editor Jared Blikre and Market Catalysts host Julie Hyman take a closer look at some of Friday morning's trending tickers and stories. Crypto stocks, including Coinbase (COIN), Strategy (MSTR), and Mara Holdings (MARA), rise as bitcoin (BTC-USD) prices reach $73,000. Carvana (CVNA) has approved a 5-for-1 stock split. Once Upon a Farm (OFRM) forecasts slowing sales growth this year. To watch more expert insights and analysis on the latest market action, check out more Market Catalysts.",
+        "url": "https://finnhub.io/api/news?id=49200c9260b56e31ac2c17eef91334a1a0c3e58c945e3633b990fbe69da54e19"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T12:00:31",
+        "headline": "6 Under-The-Radar S&P 500 Stocks Quietly Recommended By Analysts",
+        "summary": "Everyone knows energy and gold stocks are hot. But analysts are quietly pounding the table for some less obvious S&P 500 stocks.",
+        "url": "https://finnhub.io/api/news?id=187f89f663bd7103d9f4ac21aabb7842b7446144b08d4a3b4f1977cbc1f3c4eb"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T08:26:26",
+        "headline": "Mizuho Maintains Outperform on Robinhood Markets, Lowers Price Target to $110",
+        "summary": "Mizuho  analyst Dan Dolev   maintains Robinhood Markets (NASDAQ:HOOD) with a Outperform and lowers the price target from $135 to $110.",
+        "url": "https://finnhub.io/api/news?id=12763a08ae9e9ff3bf4c781f398aee17615008dcde7f4b46de087d5adf9161bc"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-13T04:30:53",
+        "headline": "Elon Musk's X Money Debit Card Spotted In Action In New Payment Video",
+        "summary": "Elon Musk&#39;s X Money payments service gets boost as a user shares video of successful transaction with service&#39;s debit card.",
+        "url": "https://finnhub.io/api/news?id=a5f6736c95d72dc7450bd3ab546e38efd2a6f32830031d2800d1acedeb8db733"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T21:45:02",
+        "headline": "Robinhood Markets, Inc. (HOOD) Dips More Than Broader Market: What You Should Know",
+        "summary": "In the most recent trading session, Robinhood Markets, Inc. (HOOD) closed at $76.12, indicating a -3.27% shift from the previous trading day.",
+        "url": "https://finnhub.io/api/news?id=a5e066cdf6f77778711beb6845c72875245759fccfbe7f523eb119dc0d087b84"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T20:14:21",
+        "headline": "Cathie Wood's ARK warns of shocking risk to 35% of Bitcoin",
+        "summary": "ARK Invest CEO Cathie Wood is one of the veteran investors whose views on digital assets are taken very seriously by the crypto industry. In fact, she once revealed that ARK Invest was the first publicly listed asset manager to gain Bitcoin (BTC) exposure in 2015. Bitcoin wasn't worth even ...",
+        "url": "https://finnhub.io/api/news?id=a8336c613e4d22d75755f5871e380a627b3bf0c97e98fb51359f74b59352659c"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T20:12:00",
+        "headline": "These Beaten Down Finance Stocks Should Stay on Your Radar",
+        "summary": "While both Robinhood and SoFi have been beaten down from all-time highs, both platforms are still seeing strong growth momentum, with EPS revisions for their current and next fiscal years remaining positive.",
+        "url": "https://finnhub.io/api/news?id=f7b61e1645e1184f0777a6bd31ca9456a2be80242c52b8a6111a78b81031a04b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T18:21:51",
+        "headline": "Pinterest, Remitly, Angi, Revolve, and Robinhood Shares Plummet, What You Need To Know",
+        "summary": "A number of stocks fell in the afternoon session as investors grappled with the intensifying U.S.-Israeli war on Iran and its wider economic implications.",
+        "url": "https://finnhub.io/api/news?id=0a16074ebaa4ccafad3ca53b9b719b796df36818a4dc55238d77640822afbc5e"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T16:36:00",
+        "headline": "COIN Broadens Reach With Europe Futures: Is it Making a Global Push?",
+        "summary": "Coinbase launches regulated crypto and index futures across 26 European countries, widening its global presence.",
+        "url": "https://finnhub.io/api/news?id=577a1974ccdafab9fffa5a5a24a1206f43ec7d9ad80427f62a533c7f63697c00"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T16:30:38",
+        "headline": "Nvidia Isn't Alone: SanDisk, Pan American Silver Now Have 2X Leveraged ETFs",
+        "summary": "REX Shares and Tuttle Capital launched new ETFs for SanDisk and Pan American Silver, building on the trend popularized by Nvidia funds.",
+        "url": "https://finnhub.io/api/news?id=2c69f367e3df1b7125c3aeb16c4f00a53acab472c940e6e42fdfc7123007f296"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T16:20:48",
+        "headline": "Robinhood Markets Reports February 2026 Funded Customers Of 27.4M, Total Platform Assets Of $314B, And Net Deposits Of $5.6B",
+        "summary": "Robinhood Markets, Inc. (&#34;Robinhood&#34;) (NASDAQ:HOOD) today reported select monthly operating data for February 2026.Funded Customers at the end of February were 27.4 million (up approximately 140 thousand from the end of",
+        "url": "https://finnhub.io/api/news?id=f5ca6ff164b8eedf4304ea9f0ba2616be5463cd5cacd130d7b3a1046b70ff3ec"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T15:30:07",
+        "headline": "Why Is Robinhood Markets (HOOD) Up 0.9% Since Last Earnings Report?",
+        "summary": "Robinhood Markets (HOOD) reported earnings 30 days ago. What's next for the stock? We take a look at earnings estimates for some clues.",
+        "url": "https://finnhub.io/api/news?id=b9e4044bed51c31a7200a684b8b78a745f3ccb4ce5ceb6eafcbce30bf7ece4ba"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T14:12:30",
+        "headline": "You can trade oil futures. What to know before you start.",
+        "summary": "Interested in oil futures? Here's what you need to know about the risks, volatility, and use of margin before investing.",
+        "url": "https://finnhub.io/api/news?id=30cd5e20946ca37e064a98f6e76e99dfc52f071efc3fbaedd95cd06f643ddc59"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T13:35:26",
+        "headline": "10 Financials Stocks Whale Activity In Today's Session",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=68e57d30b8468455ccc5f0bdac684e0c3a53f76ba4c9fd1c1ba34676d3d0abaf"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T13:23:00",
+        "headline": "Audeo Ventures' Fund II Reaches $65 Million",
+        "summary": "Audeo Ventures, a top-performing venture capital firm specializing in early-stage investments, today announced that it exceeded its $50 million Fund II target and has achieved $65 million, on track to close at the end of this month. The close follows a $17.5 million raise for Fund I.",
+        "url": "https://finnhub.io/api/news?id=061991e693b4c0201737a6ffeb542533034c235db72684145df02165406e7b3b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T13:14:00",
+        "headline": "HOOD vs. IBKR: Which is a Better Bet in the Volatile Crypto Market?",
+        "summary": "Does Interactive Brokers' diversified platform, rising estimates and lower valuation make it the steadier brokerage bet as crypto volatility pressures Robinhood?",
+        "url": "https://finnhub.io/api/news?id=4437a8975244acec1386eeee67f7fb2d66e9c9f26ab8472ea415fa6e4fba73fd"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T11:31:53",
+        "headline": "Crypto trading bot Banana Gun clears $8B in annualized volume",
+        "summary": "Investing.com -- Banana Gun, an automated, Telegram-based crypto trading bot, has reached a major growth milestone, surpassing $8 billion in annualized trading volume, Investing.com has learned.",
+        "url": "https://finnhub.io/api/news?id=62de27e312ee7d86c8285dd6c3e1fec92256ab06aedde3ee0e8c9bf01a2ef05b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T10:41:51",
+        "headline": "CFTC Seeks Public Comment On Advanced Notice Of Proposed Rulemaking Relating to Prediction Markets",
+        "summary": "https://www.cftc.gov/PressRoom/PressReleases/9194-26",
+        "url": "https://finnhub.io/api/news?id=6899d80d627b85c5648fa1025215fe46e7a026c6dec32bd11109b3b20bdf0d98"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-12T09:00:00",
+        "headline": "Why Futu Has Strong Upside For 2026",
+        "summary": "Futu Holdings Limited Q3 earnings: EPADS $2.93, revenue +86% on Hong Kong client growth. Click for this updated look at FUTU stock prospects.",
+        "url": "https://finnhub.io/api/news?id=4dbe48df00eda6da2ac0fb9d1e2dacc8caa3e771a2782cd18b50bb7704ea981b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-11T21:30:41",
+        "headline": "Robinhood's CEO Has A 'Super App' Vision For Prediction Markets",
+        "summary": "The line between prediction markets and gambling is the most contested question in financial regulation right now, with Former New Jersey governor Chris Christie warning prediction market platforms face lawsuits from all 50 states. Bloomberg’s Odd Lots hosts pushed Robinhood Markets Inc. CEO Vlad Tenev on exactly that point. Polymarket already hosted a Super Bowl coin toss contract trading at 50/50. So what would actually stop Robinhood from skipping the Super Bowl entirely and livestreaming a r",
+        "url": "https://finnhub.io/api/news?id=4308cc78e74588de5fe97feb9cf4497d356bfde9b391d26cc39f9a461405f975"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-11T16:01:00",
+        "headline": "COIN Lags Industry YTD, Trades at Premium: What Should Investors Do?",
+        "summary": "COIN shares trail the industry in 2026 despite crypto expansion plans. Its rich valuation, falling earnings estimates and market risks cloud the outlook.",
+        "url": "https://finnhub.io/api/news?id=af24b6d401ebc2877672c8c42d59999b706479d7d46d308c4dc28a8103d9ae60"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-11T13:35:24",
+        "headline": "10 Financials Stocks With Whale Alerts In Today's Session",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=1d22d4bb11cf136a939dbc80e1bf89d8ea9dc0d0526b51aeb2fe4f7f72916bb9"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-11T11:27:54",
+        "headline": "Jim Cramer on Coinbase Global: “What I Would Suggest You Do Is Just Buy Bitcoin, It’s Cleaner”",
+        "summary": "Coinbase Global, Inc. (NASDAQ:COIN) is one of the stocks on which Jim Cramer expressed his thoughts. Answering a caller’s query about the stock, Cramer said: Well, I’ll tell you, I think that it, a lot of people just think it’s a play on Bitcoin. And what I would suggest you do is just buy Bitcoin. […]",
+        "url": "https://finnhub.io/api/news?id=80ffaaefe84d2c79fe0627dd9fb0cddd3962594fb45ab971cab81803dd2734eb"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-11T11:27:51",
+        "headline": "Jim Cramer on Robinhood Ventures Fund I: “Clearly, People Aren’t That Enthused About These Venture Capital-Backed Startups”",
+        "summary": "Robinhood Ventures Fund I (NYSE:RVI) is one of the stocks on which Jim Cramer expressed his thoughts. Cramer mentioned the stock during the episode and remarked: Let me put it bluntly. When Robinhood was offering shares of RVI at $25 in the IPO, investors were buying into the fund at face value. In other words, […]",
+        "url": "https://finnhub.io/api/news?id=1ccc20549f2bf904269663112b33c72176981b25f5dcd4b7d10508e5dfaf432a"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "HOOD",
+        "published_at": "2026-03-11T09:57:29",
+        "headline": "Kalshi CEO: Retail Investors Feel Wall Street Is 'Rigged,' But Prediction Markets Give Them An Edge",
+        "summary": "Kalshi CEO says customers avoid traditional markets due to unfairness. Platform offers edge in economics, backed by Fed study. CFTC supports market as truth machine. Nasdaq and Cboe also looking to enter market. Robinhood and DraftKings already involved.",
+        "url": "https://finnhub.io/api/news?id=3be0c7025ceae132ba690f109f11542c5166db36f70ac3e90a2537b4d77770f0"
+      }
+    ],
+    "fundamental_inferred": [
+      {
+        "category": "company",
+        "description": "Net margin has compressed materially, signaling profitability pressure.",
+        "source_type": "inferred",
+        "direction": "negative",
+        "evidence": {
+          "net_margin_change_last": -0.11957246273134503
+        }
+      },
+      {
+        "category": "company",
+        "description": "Leverage (debt-to-equity) has increased, weakening the balance sheet.",
+        "source_type": "inferred",
+        "direction": "negative",
+        "evidence": {
+          "d2e_change_last": 0.35874503861647455
+        }
+      }
+    ],
+    "technical_inferred": [
+      {
+        "category": "company",
+        "description": "Price is in a weak downtrend below both 50-day and 200-day moving averages.",
+        "source_type": "market_implied",
+        "direction": "negative",
+        "evidence": {
+          "last_close": 73.38999938964844,
+          "ma_50": 92.2043994140625,
+          "ma_200": 107.66169969558716
+        }
+      },
+      {
+        "category": "speculative",
+        "description": "Severe multi-month drawdown, indicating strong negative sentiment or thesis break.",
+        "source_type": "market_implied",
+        "direction": "negative",
+        "evidence": {
+          "return_3m": -0.45901520412425956
+        }
+      }
+    ],
+    "industry_candidates": []
+  },
+  "validation": {
+    "errors": [
+      "structured_catalysts[0].direction invalid: None",
+      "structured_catalysts[0].source_type invalid: None",
+      "structured_catalysts[0].is_already_priced invalid: None",
+      "structured_catalysts[0].monitoring_trigger must be string",
+      "structured_catalysts[0].evidence_summary must be string",
+      "structured_catalysts[1].direction invalid: None",
+      "structured_catalysts[1].source_type invalid: None",
+      "structured_catalysts[1].is_already_priced invalid: None",
+      "structured_catalysts[1].monitoring_trigger must be string",
+      "structured_catalysts[1].evidence_summary must be string",
+      "structured_catalysts[2].direction invalid: None",
+      "structured_catalysts[2].source_type invalid: None",
+      "structured_catalysts[2].is_already_priced invalid: None",
+      "structured_catalysts[2].monitoring_trigger must be string",
+      "structured_catalysts[2].evidence_summary must be string",
+      "structured_catalysts[3].direction invalid: None",
+      "structured_catalysts[3].source_type invalid: None",
+      "structured_catalysts[3].is_already_priced invalid: None",
+      "structured_catalysts[3].monitoring_trigger must be string",
+      "structured_catalysts[3].evidence_summary must be string",
+      "structured_catalysts[4].direction invalid: None",
+      "structured_catalysts[4].source_type invalid: None",
+      "structured_catalysts[4].is_already_priced invalid: None",
+      "structured_catalysts[4].monitoring_trigger must be string",
+      "structured_catalysts[4].evidence_summary must be string"
+    ]
+  }
+}

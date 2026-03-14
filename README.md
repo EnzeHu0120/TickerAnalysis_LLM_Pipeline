@@ -4,6 +4,28 @@ A pipeline that pulls fundamental and price data for a given ticker, engineers f
 
 **End goal:** A fully automated workflow to analyze and record a ticker’s fundamentals and technicals, with reports that can be versioned and compared over time. The design is intended to evolve with LLM capabilities (better models, prompts, and tool use) so the pipeline stays current.
 
+Example reports are written to the `outputs/` directory. In this repo, a reference example is:
+- `outputs/POET_2026-03-12_1820_report.json`
+
+---
+
+## In progress (roadmap)
+
+- **Industry / ecosystem catalysts (`industry_candidates`)**  
+  - Currently always empty. Planned: populate via sector/industry news or peer-event feeds (e.g. FMP/Finnhub sector APIs) so Prompt 1D and the final report can include industry-level catalyst evidence.
+- **Signal aggregation framework**  
+  - Structured `signals` JSON from the LLM (growth / profitability / valuation / balance_sheet / momentum / catalysts / risk / management_execution).  
+  - Python-side signal scoring with a simple scale (e.g. strong_positive = +2, positive = +1, cautious = -1, strong_negative = -2).  
+- **Signal aggregation ranking**  
+  - Compute a per-ticker overall score from signals and catalyst quality.  
+  - Support ranking across 100+ tickers and exporting top-ideas / high-risk-high-upside lists.  
+- **Backtest**  
+  - Design a backtest framework to evaluate whether higher-scored names outperform (hit rate, forward returns, rank IC, drawdown, Sharpe).  
+- **UI / visualization**  
+  - JSON report visualization (single-ticker detail, multi-ticker comparison, ranking dashboards).  
+- **Cost control**  
+  - Continue to refine prompt structure (including rating and catalyst logic in `llm_pipeline.py`), model choice, and batching so that large universes (100+ tickers) remain affordable under typical LLM credit limits.
+
 ---
 
 ## What it does
@@ -17,13 +39,16 @@ A pipeline that pulls fundamental and price data for a given ticker, engineers f
    - Fundamental metrics: margins, leverage, growth rates, etc.
    - Technical snapshot (via [ta](https://github.com/bukosabino/ta)): see **Technical indicators** below. A high-info-density **technical summary** is then produced for the LLM (not the full indicator table).
 
-3. **LLM analysis** — Sends the above to Gemini in three parallel prompts, then one synthesis:
+3. **LLM analysis** — Sends the above to the LLM in four parallel prompts, then one synthesis:
    - **1A** — Annual fundamental signals (top 5)
    - **1B** — Quarterly deviation / acceleration / reversal signals
    - **1C** — Technical signals from the computed snapshot
-   - **2** — Synthesis: fundamental vs technical stance, combined signals, price target matrix (Bear / Consensus / Bull), risks, catalysts
+   - **1D** — Catalyst classification from upstream evidence (company news, inferred fundamental/technical catalysts; industry/ecosystem candidates are planned, see **In progress**)
+   - **2** — Synthesis: archetype-aware outlook, combined signals, price target matrix (Bear / Consensus / Bull), structured catalysts (direction: positive / negative / neutral), rating, risks
 
 4. **Output** — Writes a single JSON report to `outputs/{TICKER}_{date}_report.json`, including a **hard rating** (Overweight | Equal-weight | Hold | Underweight | Reduce) with rationale.
+
+   **Rating (post-processing):** The report’s `rating` is not the LLM’s raw output. The pipeline saves the model’s original rating as `rating_raw_model`, then sets `rating` from the structured **rating_dimensions** (expected return, thesis conviction, balance-sheet risk, catalyst quality, valuation) via a fixed mapping. That keeps the final rating aligned with the dimensions and comparable across runs.
 
 ---
 
@@ -89,9 +114,12 @@ The pipeline computes the following indicators from OHLCV price history via the 
 
 | Path | Purpose |
 |------|--------|
-| **`fundamental_pipeline.py`** | **Fundamental data source** — Yahoo Finance annual/quarterly fetch, statement merge, anchor_dates, derived metrics |
-| **`technical_pipeline.py`** | **Technical data source** — ta-based indicator computation, technical summary for LLM |
-| **`llm_pipeline.py`** | **LLM layer** — Pulls fundamental + technical data, builds prompts, runs 1A/1B/1C + synthesis, writes JSON report |
+| **`fundamental_pipeline.py`** | **Fundamental data source** — Yahoo Finance annual/quarterly fetch, anchor-based history, investment-oriented metrics (growth, margins, leverage, FCF proxies, capex/R&D intensity) |
+| **`technical_pipeline.py`** | **Technical data source** — ta-based indicator computation, technical summary for LLM, plus 52w context and trend/volatility regimes |
+| **`catalyst_pipeline.py`** | **Catalyst layer** — Aggregates external news (FMP/Finnhub) + inferred fundamental/technical catalysts into structured inputs for the LLM. `industry_candidates` is currently a placeholder (empty); planned to be filled via sector/industry or peer feeds. |
+| **`archetype.py`** | **Archetype layer** — Classifies the company into coarse archetypes (e.g. pre-profit deep tech, cyclical industrial, regulated utility) to guide the research lens |
+| **`llm_pipeline.py`** | **LLM layer** — Pulls fundamental + technical + archetype + catalyst data, runs prompts 1A/1B/1C/1D + final synthesis, writes JSON report with rating and structured signals/catalysts |
+| **`report_validation.py`** | **Schema validation** — Validates final report rating, price_target_matrix, signals, and structured_catalysts, surfacing issues for auditing |
 | **`llm_config.py`** | Central LLM configuration (backend/model/project); loaded by `llm_pipeline.py` |
 | `.env.example` | Template for local `.env` (copy to `.env`, add `GEMINI_API_KEY`) |
 | `requirements.txt` | Python dependencies |
@@ -102,4 +130,4 @@ The pipeline computes the following indicators from OHLCV price history via the 
 ## Keeping it current
 
 - The pipeline is built to **stay updated as LLMs improve**: swap models via `GEMINI_MODEL` (or code), refine prompts, and later add tool use / agents if useful.
-- Extend with more data sources, metrics, or prompt stages as needed; the goal is a single, repeatable flow from ticker → stored analysis.
+- Extend with more data sources, metrics, or prompt stages as needed; the goal is a single, repeatable flow from ticker → stored analysis, with auditable inputs (fundamentals, technicals, catalysts, archetype) behind each final rating.

@@ -52,6 +52,9 @@ if str(THIS_DIR) not in sys.path:
 
 import fundamental_pipeline as fund_mod
 import technical_pipeline as tech_mod
+from archetype import classify_archetype, archetype_to_dict
+from catalyst_pipeline import build_catalyst_inputs
+from report_validation import validate_report
 
 
 # =========================
@@ -143,6 +146,11 @@ SYSTEM_PROMPT = (
     "You are a professional financial analyst. "
     "Always respond in valid JSON format only — no markdown, no preamble, no extra text outside JSON. "
     "All monetary values should be raw numbers (no currency symbols). "
+    "You must balance growth, profitability, balance sheet quality, valuation, and risk; "
+    "do NOT mechanically favor high growth or strong share price momentum when the balance sheet is weak, "
+    "cash burn is high, or shareholder dilution is severe. "
+    "For highly speculative companies with weak or nonexistent profitability, you must treat the risk as elevated "
+    "even if technical momentum is strong. "
     'Sentiment labels must be one of: "Strongly Positive", "Positive", "Neutral", '
     '"Cautionary", "Negative", "Strongly Negative". '
     f'When outputting a rating, you MUST use exactly one of: {RATING_OPTIONS}.'
@@ -261,8 +269,58 @@ Return a JSON object with this exact schema:
 }}
 """
 
-PROMPT_2 = """Synthesize the fundamental and technical analyses below for {TICKER}. Identify where fundamentals and technicals diverge or converge,
-and produce a unified investment outlook with a price target matrix and a single, hard rating.
+PROMPT_1D_CATALYSTS = """You are evaluating catalysts for {TICKER} based ONLY on the structured evidence provided.
+
+You MUST NOT invent catalysts that are not supported by:
+- the external news items,
+- the inferred fundamental/technical catalysts,
+- or explicitly described industry/sector context.
+
+Your task is to classify and enrich catalysts into a structured list.
+
+=== COMPANY NEWS (raw items) ===
+{COMPANY_NEWS_JSON}
+
+=== INFERRED FUNDAMENTAL CATALYSTS (from Python metrics) ===
+{FUNDAMENTAL_INFERRED_JSON}
+
+=== INFERRED TECHNICAL / MARKET-IMPLIED CATALYSTS (from Python snapshot) ===
+{TECHNICAL_INFERRED_JSON}
+
+=== INDUSTRY / ECOSYSTEM CANDIDATES (may be empty in this version) ===
+{INDUSTRY_CANDIDATES_JSON}
+
+Return a JSON object with a single field:
+{{
+  "structured_catalysts": [
+    {{
+      "category": "company | industry | speculative",
+      "description": string,
+      "direction": "positive | negative | neutral",
+      "source_type": "reported | inferred | market_implied | speculative",
+      "time_horizon": "near_term | medium_term | long_term",
+      "confidence": "Low | Medium | High",
+      "impact_level": "Low | Medium | High",
+      "is_already_priced": "Yes | No | Partially",
+      "monitoring_trigger": string,
+      "evidence_summary": string
+    }}
+  ]
+}}
+
+Be conservative when assigning confidence and impact_level. If evidence is weak or mixed,
+you must lower confidence instead of overstating the catalyst.
+Use direction "neutral" only when impact has no clear positive/negative bias or uncertainty is too high
+to call; pair with confidence "Low" when the catalyst is highly uncertain.
+"""
+
+
+PROMPT_2 = """Synthesize the fundamental, technical, archetype, and catalyst analyses below for {TICKER}.
+Identify where fundamentals and technicals diverge or converge, and produce a unified investment outlook
+with a price target matrix, a single, hard rating, structured signals, and structured catalysts.
+
+=== COMPANY ARCHETYPE (from Python rules) ===
+{ARCHETYPE_JSON}
 
 === ANNUAL FUNDAMENTAL ANALYSIS ===
 {OUTPUT_FROM_PROMPT_1A}
@@ -273,9 +331,47 @@ and produce a unified investment outlook with a price target matrix and a single
 === TECHNICAL ANALYSIS ===
 {OUTPUT_FROM_PROMPT_1C}
 
-Return a JSON object with this exact schema. The "rating" field is MANDATORY and must be exactly one of: Overweight | Equal-weight | Hold | Underweight | Reduce.
-The "price_target_matrix" array MUST contain exactly three objects, one for each scenario: Bear, Consensus, Bull (in that order). Each scenario MUST be analyzed
-independently, with its own price_target_range and key_assumption; you may NOT merge scenarios into a single combined row.
+=== STRUCTURED CATALYST INPUTS (Prompt 1D output) ===
+{OUTPUT_FROM_PROMPT_1D}
+
+You must follow these constraints:
+- The "rating" field is MANDATORY and must be exactly one of: Overweight | Equal-weight | Hold | Underweight | Reduce.
+- The rating should reflect 6–12 month risk/reward, not just narrative attractiveness.
+- If you are uncertain, default to "Hold" rather than omitting or leaving the rating empty.
+- Do NOT invent catalysts that are not present in or implied by the upstream evidence.
+- Do NOT automatically treat technical pullbacks as buying opportunities; only do so when fundamentals, valuation, and catalysts support it.
+- Do NOT infer liquidity distress from working capital alone unless clearly justified by the statements or news.
+- Avoid exaggerated or promotional language; favor precise, balanced phrasing.
+- If evidence is mixed, reduce confidence instead of forcing a strong directional call.
+
+You MUST always output:
+- a "rating"
+- a balanced discussion of risks, catalysts, and valuation
+- a non-empty "key_catalysts" array (use at least an empty array if no clear catalysts exist)
+- a "signals" array covering the main investment dimensions
+- a "structured_catalysts" array classifying catalysts by type.
+
+The "signals" array is a structured scoring system. For each signal, you must specify:
+- "type": one of ["growth", "profitability", "valuation", "balance_sheet", "momentum", "industry_catalyst", "company_catalyst", "speculative_catalyst", "risk", "management_execution"]
+- "strength": one of ["strong_positive", "positive", "cautious", "strong_negative"]
+- "reason": a concise natural-language explanation linking back to fundamentals, technicals, or catalysts.
+
+The "structured_catalysts" array is a structured catalyst representation. You MUST use only catalysts
+that are supported by upstream evidence (Prompts 1A/1B/1C/1D). This is not a place to speculate freely.
+For each catalyst, you must output:
+- "category": one of ["company", "industry", "speculative"]
+- "description": a concise description of the catalyst
+- "direction": "positive", "negative", or "neutral" (use neutral when impact is unclear or evidence insufficient; use confidence Low when highly uncertain)
+- "source_type": "reported", "inferred", "market_implied", or "speculative"
+- "time_horizon": one of ["near_term", "medium_term", "long_term"]
+- "confidence": one of ["Low", "Medium", "High"]
+- "impact_level": one of ["Low", "Medium", "High"] indicating impact on the investment case.
+- "is_already_priced": "Yes", "No", or "Partially"
+- "monitoring_trigger": a concrete future event or datapoint that would confirm/negate the catalyst
+- "evidence_summary": 1–2 sentences summarizing the underlying evidence.
+
+The "price_target_matrix" array MUST contain exactly three objects, one for each scenario: Bear, Consensus, Bull (in that order).
+Each scenario MUST be analyzed independently, with its own price_target_range and key_assumption; you may NOT merge scenarios into a single combined row.
 {{
  "report_metadata": {{
    "company": string,
@@ -300,6 +396,20 @@ independently, with its own price_target_range and key_assumption; you may NOT m
      "synthesis": string
    }}
  ],
+ "rating_dimensions": {{
+   "expected_return_6_12m": "strong_upside | moderate_upside | flat | moderate_downside | strong_downside",
+   "thesis_conviction": "Low | Medium | High",
+   "balance_sheet_risk": "Low | Medium | High",
+   "catalyst_quality": "Low | Medium | High",
+   "valuation_stretch": "cheap | fair | expensive"
+ }},
+ "signals": [
+   {{
+     "type": "growth | profitability | valuation | balance_sheet | momentum | industry_catalyst | company_catalyst | speculative_catalyst | risk | management_execution",
+     "strength": "strong_positive | positive | cautious | strong_negative",
+     "reason": string
+   }}
+ ],
  "price_target_matrix": [
    {{
     "scenario": "Bear",
@@ -322,7 +432,21 @@ independently, with its own price_target_range and key_assumption; you may NOT m
  ],
  "overall_outlook": string,
  "key_risks": [string],
- "key_catalysts": [string]
+ "key_catalysts": [string],
+ "structured_catalysts": [
+   {{
+     "category": "company | industry | speculative",
+     "description": string,
+     "direction": "positive | negative | neutral",
+     "source_type": "reported | inferred | market_implied | speculative",
+     "time_horizon": "short_term | medium_term | long_term",
+     "confidence": "Low | Medium | High",
+     "impact_level": "Low | Medium | High",
+     "is_already_priced": "Yes | No | Partially",
+     "monitoring_trigger": string,
+     "evidence_summary": string
+   }}
+ ]
 }}
 """
 
@@ -440,7 +564,11 @@ RATING_ALIASES = {
 
 
 def normalize_rating(report: Dict[str, Any]) -> None:
-    """Enforce rating to a canonical English value; set rationale if missing."""
+    """Enforce rating to a canonical English value; set rationale if missing.
+
+    If the raw rating is missing or cannot be mapped, fall back to a conservative
+    default of 'Hold'.
+    """
     raw = (report.get("rating") or "").strip()
     canonical = "Hold"
     if raw:
@@ -461,6 +589,64 @@ def normalize_rating(report: Dict[str, Any]) -> None:
     report["rating"] = canonical
     if not report.get("rating_rationale"):
         report["rating_rationale"] = "Combined fundamental and technical synthesis."
+
+
+def rating_from_dimensions(report: Dict[str, Any]) -> str:
+    """
+    Map structured rating dimensions into a canonical rating.
+    Used as a stabilizing layer so the final rating does not rely solely
+    on free-form judgment.
+    """
+    dims = report.get("rating_dimensions") or {}
+    expected = dims.get("expected_return_6_12m")
+    conviction = dims.get("thesis_conviction")
+    bs_risk = dims.get("balance_sheet_risk")
+    catalyst_q = dims.get("catalyst_quality")
+    valuation = dims.get("valuation_stretch")
+
+    # Base score from expected return
+    score = 0
+    if expected == "strong_upside":
+        score += 2
+    elif expected == "moderate_upside":
+        score += 1
+    elif expected == "flat":
+        score += 0
+    elif expected == "moderate_downside":
+        score -= 1
+    elif expected == "strong_downside":
+        score -= 2
+
+    # Adjust for conviction
+    if conviction == "High":
+        score *= 1.2
+    elif conviction == "Low":
+        score *= 0.8
+
+    # Penalize balance sheet risk and expensive valuation
+    if bs_risk == "High":
+        score -= 1.0
+    if valuation == "expensive":
+        score -= 0.5
+    elif valuation == "cheap":
+        score += 0.5
+
+    # Boost for strong catalyst quality
+    if catalyst_q == "High":
+        score += 0.5
+    elif catalyst_q == "Low":
+        score -= 0.5
+
+    # Map numeric score to discrete rating
+    if score >= 1.5:
+        return "Overweight"
+    if 0.5 <= score < 1.5:
+        return "Equal-weight"
+    if -0.5 < score < 0.5:
+        return "Hold"
+    if -1.5 < score <= -0.5:
+        return "Underweight"
+    return "Reduce"
 
 
 def normalize_price_target_matrix(report: Dict[str, Any]) -> None:
@@ -535,6 +721,20 @@ def main():
     tech_snap_json = safe_json_dumps(tech_snap)
     technical_summary_text = tech_snap.get("technical_summary_text", "N/A")
 
+    # ---------- Archetype (Prompt 0 equivalent, rule-based) ----------
+    meta_df = annual_out.get("meta", pd.DataFrame())
+    archetype_obj = classify_archetype(meta_df, annual_metrics)
+    archetype_json = safe_json_dumps(archetype_to_dict(archetype_obj))
+
+    # ---------- Catalyst inputs (for Prompt 1D) ----------
+    catalyst_inputs = build_catalyst_inputs(
+        ticker=ticker,
+        analysis_date=analysis_date,
+        fundamentals=annual_out,
+        tech_snapshot=tech_snap,
+    )
+    catalyst_inputs_json = safe_json_dumps(catalyst_inputs)
+
     # ---------- Build prompts ----------
     company_hint = f"\nCompany hint: {company_name}\n" if company_name else ""
 
@@ -554,6 +754,13 @@ def main():
         ANALYSIS_DATE=analysis_date,
         TECHNICAL_SUMMARY_TEXT=technical_summary_text,
         TECHNICAL_SNAPSHOT_JSON=tech_snap_json,
+    )
+    p1d = PROMPT_1D_CATALYSTS.format(
+        TICKER=ticker,
+        COMPANY_NEWS_JSON=safe_json_dumps(catalyst_inputs.get("company_news", [])),
+        FUNDAMENTAL_INFERRED_JSON=safe_json_dumps(catalyst_inputs.get("fundamental_inferred", [])),
+        TECHNICAL_INFERRED_JSON=safe_json_dumps(catalyst_inputs.get("technical_inferred", [])),
+        INDUSTRY_CANDIDATES_JSON=safe_json_dumps(catalyst_inputs.get("industry_candidates", [])),
     )
 
     # ---------- LLM client ----------
@@ -575,13 +782,14 @@ def main():
         client = genai.Client()
         runner = GeminiRunner(model=cfg.gemini_model, client=client)
 
-    # ---------- 1A/1B/1C parallel ----------
+    # ---------- 1A/1B/1C/1D parallel ----------
     results: Dict[str, Any] = {}
-    with ThreadPoolExecutor(max_workers=3) as ex:
+    with ThreadPoolExecutor(max_workers=4) as ex:
         futs = {
             ex.submit(runner.run_json, p1a, 0.2): "1A",
             ex.submit(runner.run_json, p1b, 0.2): "1B",
             ex.submit(runner.run_json, p1c, 0.2): "1C",
+            ex.submit(runner.run_json, p1d, 0.2): "1D",
         }
         for fut in as_completed(futs):
             tag = futs[fut]
@@ -593,13 +801,41 @@ def main():
     # ---------- Prompt 2 synthesis ----------
     p2 = (company_hint + PROMPT_2).format(
         TICKER=ticker,
+        ARCHETYPE_JSON=archetype_json,
         OUTPUT_FROM_PROMPT_1A=safe_json_dumps(results.get("1A", {})),
         OUTPUT_FROM_PROMPT_1B=safe_json_dumps(results.get("1B", {})),
         OUTPUT_FROM_PROMPT_1C=safe_json_dumps(results.get("1C", {})),
+        OUTPUT_FROM_PROMPT_1D=safe_json_dumps(results.get("1D", {})),
     )
     final_report = runner.run_json(p2, temperature=0.2)
+
+    # Use structured dimensions (if present) to derive a stable rating,
+    # then normalize aliases / fallbacks.
+    try:
+        if isinstance(final_report, dict) and final_report.get("rating_dimensions"):
+            final_report.setdefault("rating_raw_model", final_report.get("rating"))
+            final_report["rating"] = rating_from_dimensions(final_report)
+    except Exception:
+        # If anything goes wrong, fall back to whatever the model provided.
+        pass
+
     normalize_rating(final_report)
     normalize_price_target_matrix(final_report)
+
+    # Basic schema validation (non-fatal, but surfaces issues early)
+    validation_errors: list = []
+    try:
+        validation_errors = validate_report(final_report)
+    except Exception:
+        validation_errors = ["validate_report raised an exception"]
+
+    # Attach archetype and catalyst inputs for auditability
+    final_report.setdefault("archetype", {})
+    final_report["archetype"] = json.loads(archetype_json)
+    final_report.setdefault("catalyst_inputs_debug", catalyst_inputs)
+    # Always write validation so the report structure is consistent (errors may be empty)
+    final_report.setdefault("validation", {})
+    final_report["validation"]["errors"] = validation_errors
 
     # Annotate report with the LLM backend/model used for full transparency
     meta = final_report.get("report_metadata") or {}

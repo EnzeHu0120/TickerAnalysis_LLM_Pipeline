@@ -1,0 +1,480 @@
+{
+  "report_metadata": {
+    "company": "POET Technologies Inc.",
+    "ticker": "POET",
+    "analysis_date": "2026-03-12",
+    "analysis_type": "Fundamental + Technical Synthesis",
+    "llm_backend": "gemini-vertex",
+    "llm_model": "gemini-3.1-pro-preview"
+  },
+  "rating": "Reduce",
+  "rating_rationale": "POET Technologies exhibits an extreme divergence between its speculative, AI-driven technical momentum and its distressed fundamental reality. The company is effectively pre-revenue (generating only 41427 in 2024) while burning massive amounts of cash, evidenced by a 56.7 million net loss. To survive, management has resorted to severe shareholder dilution, increasing outstanding shares from 42.49 million in 2023 to 91.0 million by Q3 2025. While recent capital raises provide a liquidity runway and technical indicators show a strong uptrend fueled by AI narrative hype, the astronomical valuation relative to zero commercial traction and the guarantee of continued dilution make the 6-12 month risk/reward profile highly unfavorable.",
+  "core_divergence": {
+    "fundamental_stance": "Strongly Negative. The company has near-zero revenue, exponentially widening operating losses, and relies entirely on highly dilutive equity financing to maintain operations.",
+    "technical_stance": "Positive but Overextended. The stock is in a strong uptrend above all major moving averages with high volume, though momentum indicators (MACD deceleration, Stochastic bearish crossover) suggest near-term exhaustion.",
+    "divergence_summary": "Price action is entirely decoupled from fundamental reality. The stock is trading on speculative AI photonics narratives and institutional positioning, completely ignoring the underlying cash burn and massive shareholder dilution."
+  },
+  "synthesized_signals": [
+    {
+      "rank": 1,
+      "signal": "Extreme Shareholder Dilution vs. Liquidity Runway",
+      "sentiment": "Strongly Negative",
+      "fundamental_driver": "Outstanding shares surged from 42.49 million in 2023 to 91.0 million in Q3 2025, alongside a 150000000 registered direct offering.",
+      "technical_driver": "The market has temporarily absorbed the dilution due to high speculative volume (2.79x average) and AI narrative enthusiasm.",
+      "synthesis": "While the massive equity raises provide necessary working capital (52.9 million in Q3 2025), the permanent destruction of per-share value makes long-term capital appreciation highly improbable without an immediate, miraculous commercial turnaround."
+    },
+    {
+      "rank": 2,
+      "signal": "Technical Uptrend vs. Exhaustion Indicators",
+      "sentiment": "Cautionary",
+      "fundamental_driver": "Lack of organic revenue growth leaves the stock price entirely dependent on sentiment and press releases.",
+      "technical_driver": "Price is well above the 200-day SMA (5.95), but MACD histogram is falling, Stochastic K crossed below D, and price is hugging the upper Bollinger Band.",
+      "synthesis": "The technical momentum that has carried the stock to 7.44 is showing clear signs of fatigue. Without fundamental earnings to support the valuation, a technical pullback could be severe."
+    },
+    {
+      "rank": 3,
+      "signal": "AI Narrative vs. Commercial Reality",
+      "sentiment": "Negative",
+      "fundamental_driver": "Revenue collapsed 91% YoY to 41427 in 2024, proving the technology has not yet achieved commercial monetization.",
+      "technical_driver": "Whale activity and institutional stakes (e.g., MMCAP) have driven price action based on industry awards and collaborations.",
+      "synthesis": "Industry validation and awards are positive, but until they translate into tangible foundry or product revenue, the stock remains a highly speculative narrative play vulnerable to sudden re-rating."
+    }
+  ],
+  "rating_dimensions": {
+    "expected_return_6_12m": "strong_downside",
+    "thesis_conviction": "High",
+    "balance_sheet_risk": "High",
+    "catalyst_quality": "Medium",
+    "valuation_stretch": "expensive"
+  },
+  "signals": [
+    {
+      "type": "profitability",
+      "strength": "strong_negative",
+      "reason": "Net losses expanded dramatically to 56.7 million in 2024, with operating losses continuing to widen in Q3 2025, indicating no path to near-term profitability."
+    },
+    {
+      "type": "growth",
+      "strength": "strong_negative",
+      "reason": "Revenue is practically non-existent (41427 in 2024) and declining, showing a complete lack of commercial traction."
+    },
+    {
+      "type": "balance_sheet",
+      "strength": "strong_negative",
+      "reason": "While working capital increased, it is entirely funded by aggressive, value-destroying shareholder dilution (shares outstanding more than doubled in under two years)."
+    },
+    {
+      "type": "momentum",
+      "strength": "positive",
+      "reason": "Stock is trading above all major moving averages with significant volume surges, though short-term exhaustion signals are flashing."
+    },
+    {
+      "type": "speculative_catalyst",
+      "strength": "positive",
+      "reason": "AI photonics narrative, industry awards, and a new collaboration with Quantum Computing Inc. provide speculative fuel for retail and institutional traders."
+    }
+  ],
+  "price_target_matrix": [
+    {
+      "scenario": "Bear",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 3.0,
+        "high": 4.5
+      },
+      "key_assumption": "AI hype cools, technical momentum breaks below the 200-day SMA, and the market reprices the stock based on its severe cash burn and massive share dilution."
+    },
+    {
+      "scenario": "Consensus",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 5.0,
+        "high": 6.5
+      },
+      "key_assumption": "The stock consolidates near its 50-day and 200-day moving averages as the company slowly deploys its newly raised capital, but fails to generate significant near-term revenue."
+    },
+    {
+      "scenario": "Bull",
+      "timeline": "6-12 months",
+      "price_target_range": {
+        "low": 8.5,
+        "high": 10.0
+      },
+      "key_assumption": "The company successfully converts its AI photonics technology and QCI collaboration into major commercial contracts, validating the narrative and pushing price past major resistance at 9.22."
+    }
+  ],
+  "overall_outlook": "POET Technologies is a classic pre-profit, deep-tech speculative vehicle. While the company has successfully capitalized on the AI infrastructure narrative to raise substantial capital and drive its stock price into a strong technical uptrend, the fundamental cost to shareholders has been catastrophic. With shares outstanding ballooning by over 100% in recent quarters and revenue remaining near zero, the underlying business does not support the current market capitalization. Investors should view the recent technical strength as an opportunity to reduce exposure, as the probability of sustained long-term upside is severely constrained by ongoing cash burn and the sheer weight of recent equity dilution.",
+  "key_risks": [
+    "Continued and severe shareholder dilution to fund operational cash burn.",
+    "Failure to commercialize AI photonics technology and generate meaningful revenue.",
+    "Technical momentum breakdown leading to a rapid deflation of the speculative premium.",
+    "Macroeconomic headwinds, including proposed tariffs impacting the semiconductor supply chain."
+  ],
+  "key_catalysts": [
+    "Deployment of the 150000000 capital raise toward tangible R&D and commercialization.",
+    "Upcoming quarterly earnings reports to monitor for any inflection in revenue generation.",
+    "Progress updates on the Quantum Computing Inc. collaboration and Teralight optical engines."
+  ],
+  "structured_catalysts": [
+    {
+      "category": "company",
+      "description": "Massive 150000000 registered direct offering causing significant shareholder dilution.",
+      "direction": "mixed",
+      "source_type": "reported",
+      "time_horizon": "medium_term",
+      "confidence": "High",
+      "impact_level": "High",
+      "is_already_priced": "Yes",
+      "monitoring_trigger": "Monitor the deployment of capital toward actual commercial revenue generation to offset dilution.",
+      "evidence_summary": "Announced a 150000000 offering of 20.69 million shares, leading to increased leverage and massive dilution."
+    },
+    {
+      "category": "company",
+      "description": "Severe deceleration in revenue growth and persistent operating losses.",
+      "direction": "negative",
+      "source_type": "inferred",
+      "time_horizon": "short_term",
+      "confidence": "High",
+      "impact_level": "High",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "Monitor upcoming quarterly earnings for a reversal in the negative revenue growth trend.",
+      "evidence_summary": "Revenue collapsed 91% YoY to 41427 in 2024, with operating losses widening to 9.5 million in Q3 2025."
+    },
+    {
+      "category": "speculative",
+      "description": "Industry validation of AI photonics technology through awards and collaborations.",
+      "direction": "positive",
+      "source_type": "reported",
+      "time_horizon": "medium_term",
+      "confidence": "High",
+      "impact_level": "Medium",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "Watch for conversion of award-winning technology and the QCI collaboration into tangible revenue.",
+      "evidence_summary": "Won the Lightwave Award for Advanced AI Connectivity and announced a collaboration with Quantum Computing Inc."
+    },
+    {
+      "category": "industry",
+      "description": "Potential semiconductor sector headwinds due to proposed US tariffs on European goods.",
+      "direction": "negative",
+      "source_type": "reported",
+      "time_horizon": "short_term",
+      "confidence": "Medium",
+      "impact_level": "Low",
+      "is_already_priced": "Partially",
+      "monitoring_trigger": "Monitor implementation of the 10 percent tariff and its specific supply chain impact.",
+      "evidence_summary": "News highlighted semiconductor stocks trading lower following a social media post about tariffs on European countries."
+    }
+  ],
+  "rating_raw_model": "Underweight",
+  "archetype": {
+    "type": "pre_profit_deep_tech",
+    "confidence": "Medium",
+    "rationale": "Low revenue with persistent losses suggests pre-profit / deep tech profile."
+  },
+  "catalyst_inputs_debug": {
+    "ticker": "POET",
+    "analysis_date": "2026-03-12",
+    "company_news": [
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-03-10T13:35:18",
+        "headline": "10 Information Technology Stocks Whale Activity In Today's Session",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=aae57c3e7cae43d3b19655b9695669a2a7a4a08337ecc5ff25748313366c271a"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-03-10T11:07:27",
+        "headline": "POET Technologies Stock Rises Tuesday: What's Happening?",
+        "summary": "POET Technologies Inc. (NASDAQ:POET) shares are trading higher on Tuesday, outpacing broader markets.",
+        "url": "https://finnhub.io/api/news?id=d907f462906928b662755340b0a1d398dfb375006254eb88f85b547a91c1058e"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-03-03T17:09:04",
+        "headline": "POET Technologies Stock Is Trending Tuesday: What's Going On?",
+        "summary": "POET Technologies traded marginally higher in late action Tuesday as the stock continues to trend on social media despite no fresh company-specific headlines during the session.",
+        "url": "https://finnhub.io/api/news?id=3f9acf37fdd05dc3330feb87b7dcc92a84e54bd1d765df6581919c5f0b632646"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-03-03T09:00:57",
+        "headline": "Is POET Technologies Inc Gaining or Losing Market Support?",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=874f34778f9bebda7bbeaa8461fa4affc261e8f8f9749fc3ae827a841353a1b9"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-03-03T07:08:00",
+        "headline": "Quantum Computing Expands Into Photonic Manufacturing With Fab 1 And Lumina Acquisition",
+        "summary": "Quantum Computing Inc. (NasdaqCM:QUBT) completed the acquisition of Lumina(r) Semiconductor, adding laser and detector expertise to its portfolio. The company launched its Fab 1 chip manufacturing facility and began generating foundry services revenue. QUBT secured significant funding to support its growth plans in photonic and quantum technologies. The company announced new collaborations, including work with POET Technologies, and introduced products focused on photonic AI systems,...",
+        "url": "https://finnhub.io/api/news?id=92671b33586eae406d168bfb939df5b684b496bc5b3361b8d569acdd95b98ffc"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-03-02T21:05:00",
+        "headline": "Quantum Computing Inc. Reports Fourth Quarter and Year-End 2025 Financial Results",
+        "summary": "Quantum Computing Inc. (\"QCi\" or the \"Company\") (Nasdaq: QUBT), an innovative, quantum optics and integrated photonics technology company, today released financial results for the three and twelve-month periods ended December 31, 2025.",
+        "url": "https://finnhub.io/api/news?id=ce156a47f64444ecc384f6c301d3429eadf2c8ed25bb52c8122efde1e9ce1f08"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-02-26T09:31:07",
+        "headline": "POET Technologies: Risky Bet On A Big Photonic Disruptor In The AI Era",
+        "summary": "",
+        "url": "https://finnhub.io/api/news?id=523fb75665d48f60cbd827634151e87b8dea97ef60d796cd2b99de392fd3eaa7"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-02-24T12:18:41",
+        "headline": "POET Technologies Stock Jumps: What Investors Need To Know",
+        "summary": "POET Technologies shares are trading higher Tuesday morning after a new SEC filing showed that hedge fund MMCAP International Inc. SPC has become a significant shareholder in the optoelectronics company.",
+        "url": "https://finnhub.io/api/news?id=a547e0efd988968c9e24cc9c1e254e9e37e4561b123cba40b1eb38314e2d4474"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-02-12T12:57:00",
+        "headline": "POET Technologies Wins Lightwave Award for Advanced AI Connectivity",
+        "summary": "Company’s optical engine technology recognized as ground-breaking by leading industry experts for the second year in a rowSAN JOSE, Calif., Feb. 12, 2026 (GLOBE NEWSWIRE) -- POET Technologies Inc. (\"POET\" or the \"Company\") (NASDAQ: POET), a leader in the design and implementation of highly-integrated optical engines and light sources for artificial intelligence networks, today announced it has earned an Elite Score and a category win in the Lightwave Innovation Reviews 13th annual awards. A high",
+        "url": "https://finnhub.io/api/news?id=a75346f348f2ae3e1535bc247360d82497e483d76c3f267dac92e854c4494882"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-02-06T12:54:18",
+        "headline": "Poet Technologies: Where Dilution Rhymes With Delusion",
+        "summary": "POET Technologies Inc. stock fell on dilution fears, but new capital may drive bigger gains. Click for this updated look at POET stock and see why I remain bullish.",
+        "url": "https://finnhub.io/api/news?id=6a223abe0fc0143fc5b06f099c39c567af7d50a4877d5c90bc34b05da93a46d8"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-02-04T12:00:29",
+        "headline": "How Is The Market Feeling About POET Technologies Inc?",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=bc59d433231b663d6afba93f0e96ff308d6ef3429c83acd507717b25c2979c7b"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-02-03T13:35:13",
+        "headline": "10 Information Technology Stocks With Whale Alerts In Today's Session",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=cef12c8ba13260b893e190ff74f81e886a8919c2b45f0323a0ff4a266fd5c4f0"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-02-02T14:12:30",
+        "headline": "Undercovered Dozen: POET Technologies, Pan American Silver, MercadoLibre, AT&T And More",
+        "summary": "The Undercovered Dozen spotlights 12 lesser-covered stocks with compelling investment theses.",
+        "url": "https://finnhub.io/api/news?id=cdc8a0d015c68b1696efac63479d1a3e7993a3937501d9ff1c403bde150b9bd2"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-28T14:14:40",
+        "headline": "POET Technologies: Looking Beyond Valuation",
+        "summary": "",
+        "url": "https://finnhub.io/api/news?id=87226e629c1524fd50535bf88f6405c62e9d247f3f7ac522e39cd4c6d5f91712"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-24T07:30:00",
+        "headline": "POET Technologies: Not A Speculative Bet Anymore",
+        "summary": "POET Technologies provides 1.6T AI transceivers with 40% energy savings, a $15 target, and Marvell buyout potential. Check why POET stock is a strong buy.",
+        "url": "https://finnhub.io/api/news?id=c197056bf7ec23b2e461bcba1834329105a4cf015060038c81de415aceba1f3a"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-23T12:11:03",
+        "headline": "Is POET Technologies (POET) Using Its Teralight Win And Capital Raise To Redefine AI Photonics?",
+        "summary": "POET Technologies recently filed a shelf registration and entered into a registered direct offering of 20,689,656 common shares, aiming to raise about US$150,000,000 to fund acquisitions, research and development, and expansion of its high-speed optical module and light source businesses for AI infrastructure. This capital raise follows POET’s Product Innovation Award in China for its Teralight optical engines, highlighting how external validation of its photonics technology is influencing...",
+        "url": "https://finnhub.io/api/news?id=2549f93ad0d588d6d98d784cd91a0c11a03ccfdffd3e5cd787f783d86b04b7a9"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-23T06:21:37",
+        "headline": "Assessing POET Technologies (NasdaqCM:POET) Valuation After Recent Share Price Volatility",
+        "summary": "Stock performance snapshot POET Technologies (POET) has drawn investor attention after recent trading left the share price at US$6.94, with returns showing mixed signals over different time frames and raising fresh questions about how to view the stock today. See our latest analysis for POET Technologies. The sharp 17.1% 1 day share price decline and weaker 7 day and 90 day share price returns sit in contrast to a 1 year total shareholder return of 33%. This suggests recent momentum is fading...",
+        "url": "https://finnhub.io/api/news?id=8fa0b51291da500b6665de3f4892a55b4e19e662cbb7a19f29ad40e2ff10f0d3"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-23T00:38:12",
+        "headline": "Why Poet Technologies Stock Tanked on Thursday",
+        "summary": "The company's share count is about to rise notably.",
+        "url": "https://finnhub.io/api/news?id=080368fa2ba45e5c531243efa30dfaaeef523933cd89c93020616c7c14c6a858"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-22T18:32:23",
+        "headline": "POET Technologies Stock Sinks After $150 Million Share Offering",
+        "summary": "POET Stock Slides After Raising Capital for AI Infrastructure Growth",
+        "url": "https://finnhub.io/api/news?id=497d6eb605e5355db4ff96ba22f69f7b5269b7fe2f4a203db143931d2198ac15"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-22T13:19:00",
+        "headline": "POET Technologies Announces Pricing of US$150 Million Registered Direct Offering of Common Shares",
+        "summary": "TORONTO, Jan. 22, 2026 (GLOBE NEWSWIRE) -- POET Technologies Inc. (\"POET\" or the \"Company\") (NASDAQ: POET), a leader in the design and implementation of highly-integrated optical engines and light sources for artificial intelligence networks, today announced that it has entered into securities purchase agreements with institutional investors for the purchase and sale of 20,689,656 common shares in a registered direct offering. The offering is expected to result in gross proceeds of approximately",
+        "url": "https://finnhub.io/api/news?id=e181c9faae0f545c253780c6ce70aaebf8b6093376b09243d6d8cb654b7df5a7"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-22T13:05:32",
+        "headline": "12 Information Technology Stocks Moving In Thursday's Intraday Session",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=a078e2f8b9b2e7a99a39d42709142d32904a05e0c737477b9668a31550244269"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-22T13:02:14",
+        "headline": "Crude Oil Down 2%; Abbott Shares Fall Following Q4 Results",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=63946e0050794edf924508ca83f24ab7371769dc0b181fdeffe110e11a5c7488"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-22T12:34:39",
+        "headline": "What's Going On With POET Technologies Stock Thursday?",
+        "summary": "POET Technologies (POET) stock drops on announcement of $150 million registered direct offering, aimed at acquisitions and R&amp;D.",
+        "url": "https://finnhub.io/api/news?id=4aafbd0fd2b09c3459defa33793627b4a8919020beff95f911d901a52a453581"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-22T10:18:57",
+        "headline": "POET Technologies shares are trading lower after the company announced a $150 million offering of 20.690 million shares.",
+        "summary": "",
+        "url": "https://finnhub.io/api/news?id=5ff0c9d86eb85e01b888fa4811ce33dea409ec66f93497cf176b93b2c02e87e2"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-22T09:21:53",
+        "headline": "POET Technologies Enters ~$150M Offering Of 20.690M Common Shares",
+        "summary": "POET Technologies Inc. (&#34;POET&#34; or the &#34;Company&#34;) (NASDAQ:POET), a leader in the design and implementation of highly-integrated optical engines and light sources for artificial intelligence networks, today announced that",
+        "url": "https://finnhub.io/api/news?id=34e3bec7bd765c1ace87f0489c789eda79be2b9ed3d133923d80c884cdc16cca"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-20T12:38:00",
+        "headline": "POET Wins Product Innovation Award and Individual Technology Innovation Award at China’s Infostone Awards",
+        "summary": "Plaque Infostone Plaque TORONTO, Jan. 20, 2026 (GLOBE NEWSWIRE) -- POET Technologies Inc. (\"POET\" or the \"Company\") (NASDAQ: POET), a leader in the design and implementation of highly-integrated optical engines and light sources for artificial intelligence networks, today announced it has won the prestigious Product Innovation Award at the 12th Infostone Communication Consultant Shenzhen (ICCSZ) Awards, a competition that recognizes the finest applications in advanced optical communications and",
+        "url": "https://finnhub.io/api/news?id=c3fa38efe730b44ed8f11fa4675baeff8ff6dda189fc1b6491df88a08a85c365"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-20T09:39:59",
+        "headline": "Shares of semiconductor companies are trading lower amid overall market weakness after President Trump on social media posted that starting February 1st, Denmark, Norway, Sweden, France, Germany, the UK, the Netherlands and Finland will be charged a 10% tariff on all goods sent to the US. President Trump has recently escalated rhetoric about making Greenland a US territory.",
+        "summary": "",
+        "url": "https://finnhub.io/api/news?id=d263a2234f47e3e8ba6f3d7919fce076501a5e4155c3171124c6dbf1f9b748b4"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-20T09:05:12",
+        "headline": "Valneva, Tesla And Other Big Stocks Moving Lower In Tuesday's Pre-Market Session",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=0fc5068d742da3b886e9916f4f7ee4c4093266a08877eb1d3171af8bedc4cbe6"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-20T06:02:45",
+        "headline": "Why Rapt Therapeutics Shares Are Trading Higher By 63%; Here Are 20 Stocks Moving Premarket",
+        "summary": " ",
+        "url": "https://finnhub.io/api/news?id=f452b5e9c6ced6672f1f52ded8d6af91caba3548a9e6a43233376358ba327d42"
+      },
+      {
+        "source": "Finnhub",
+        "ticker": "POET",
+        "published_at": "2026-01-15T13:44:16",
+        "headline": "What You Need To Know As Poet Technologies Stock Surges",
+        "summary": "POET Technologies Inc. (NASDAQ:POET) shares are surging on Thursday, reflecting a positive sentiment in the broader market. The move comes as major indices are all in the green, with the Nasdaq up 0.97% and the Technology sector gaining 1.52%.",
+        "url": "https://finnhub.io/api/news?id=ea69a1375ce54877e841ad6ddc023c9937e54aeae5485486c72baa57647dd82f"
+      }
+    ],
+    "fundamental_inferred": [
+      {
+        "category": "company",
+        "description": "Revenue growth has decelerated or turned down recently.",
+        "source_type": "inferred",
+        "direction": "negative",
+        "evidence": {
+          "rev_growth_last": -0.911058296137422,
+          "rev_growth_prev": -0.15734294832364837
+        }
+      },
+      {
+        "category": "company",
+        "description": "Net margin has improved meaningfully, indicating margin expansion.",
+        "source_type": "inferred",
+        "direction": "positive",
+        "evidence": {
+          "net_margin_change_last": 30.452004565504883
+        }
+      },
+      {
+        "category": "company",
+        "description": "Leverage (debt-to-equity) has increased, weakening the balance sheet.",
+        "source_type": "inferred",
+        "direction": "negative",
+        "evidence": {
+          "d2e_change_last": 2.183424187565375
+        }
+      }
+    ],
+    "technical_inferred": [
+      {
+        "category": "company",
+        "description": "Price is in a strong uptrend above both 50-day and 200-day moving averages.",
+        "source_type": "market_implied",
+        "direction": "positive",
+        "evidence": {
+          "last_close": 7.440000057220459,
+          "ma_50": 6.603199996948242,
+          "ma_200": 5.949900004863739
+        }
+      },
+      {
+        "category": "company",
+        "description": "Unusual volume spike relative to recent history, indicating elevated attention.",
+        "source_type": "market_implied",
+        "direction": "mixed",
+        "evidence": {
+          "volume_last": 22305658.0,
+          "avg_volume_20": 7997052.9
+        }
+      }
+    ],
+    "industry_candidates": []
+  },
+  "validation": {
+    "errors": [
+      "structured_catalysts[1].time_horizon invalid: 'short_term'",
+      "structured_catalysts[3].time_horizon invalid: 'short_term'"
+    ]
+  }
+}
